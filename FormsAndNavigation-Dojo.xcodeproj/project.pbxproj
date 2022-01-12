@@ -83,6 +83,7 @@
 		58FB3D3F278F004B002EE9EB /* SignUp */ = {
 			isa = PBXGroup;
 			children = (
+				58FB3D48278F0167002EE9EB /* Commons */,
 				8F18781B278C460100EA7BE7 /* SignUpController.swift */,
 			);
 			path = SignUp;
@@ -136,7 +137,6 @@
 				58FB3D3C278EFFF0002EE9EB /* Application */,
 				58FB3D3E278F0041002EE9EB /* Scenes */,
 				58FB3D44278F00BC002EE9EB /* Networker */,
-				58FB3D48278F0167002EE9EB /* Commons */,
 				8F187820278C460200EA7BE7 /* Assets.xcassets */,
 				8F187825278C460200EA7BE7 /* Info.plist */,
 			);
@@ -146,9 +146,17 @@
 		8F18782D278C460200EA7BE7 /* FormsAndNavigation-DojoTests */ = {
 			isa = PBXGroup;
 			children = (
+				92C70C67278F04DF008F2DC6 /* ConstantsTests */,
 				8F18782E278C460200EA7BE7 /* FormsAndNavigation_DojoTests.swift */,
 			);
 			path = "FormsAndNavigation-DojoTests";
+			sourceTree = "<group>";
+		};
+		92C70C67278F04DF008F2DC6 /* ConstantsTests */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ConstantsTests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
