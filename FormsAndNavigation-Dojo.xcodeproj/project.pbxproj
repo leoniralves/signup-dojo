@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		58FB3D43278F008F002EE9EB /* Analytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58FB3D42278F008F002EE9EB /* Analytics.swift */; };
 		8F187818278C460100EA7BE7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F187817278C460100EA7BE7 /* AppDelegate.swift */; };
 		8F18781A278C460100EA7BE7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F187819278C460100EA7BE7 /* SceneDelegate.swift */; };
 		8F18781C278C460100EA7BE7 /* SignUpController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F18781B278C460100EA7BE7 /* SignUpController.swift */; };
@@ -27,6 +28,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		58FB3D42278F008F002EE9EB /* Analytics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Analytics.swift; sourceTree = "<group>"; };
 		8F187814278C460100EA7BE7 /* FormsAndNavigation-Dojo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "FormsAndNavigation-Dojo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8F187817278C460100EA7BE7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8F187819278C460100EA7BE7 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -57,6 +59,49 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		58FB3D3C278EFFF0002EE9EB /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				58FB3D41278F006F002EE9EB /* Analytics */,
+				8F187817278C460100EA7BE7 /* AppDelegate.swift */,
+				8F187819278C460100EA7BE7 /* SceneDelegate.swift */,
+				8F187822278C460200EA7BE7 /* LaunchScreen.storyboard */,
+			);
+			path = Application;
+			sourceTree = "<group>";
+		};
+		58FB3D3E278F0041002EE9EB /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				58FB3D3F278F004B002EE9EB /* SignUp */,
+			);
+			path = Scenes;
+			sourceTree = "<group>";
+		};
+		58FB3D3F278F004B002EE9EB /* SignUp */ = {
+			isa = PBXGroup;
+			children = (
+				8F18781B278C460100EA7BE7 /* SignUpController.swift */,
+			);
+			path = SignUp;
+			sourceTree = "<group>";
+		};
+		58FB3D41278F006F002EE9EB /* Analytics */ = {
+			isa = PBXGroup;
+			children = (
+				58FB3D42278F008F002EE9EB /* Analytics.swift */,
+			);
+			path = Analytics;
+			sourceTree = "<group>";
+		};
+		58FB3D44278F00BC002EE9EB /* Networker */ = {
+			isa = PBXGroup;
+			children = (
+				8F2563CF278EEC240046E79C /* Networker.swift */,
+			);
+			path = Networker;
+			sourceTree = "<group>";
+		};
 		8F18780B278C460000EA7BE7 = {
 			isa = PBXGroup;
 			children = (
@@ -78,12 +123,10 @@
 		8F187816278C460100EA7BE7 /* FormsAndNavigation-Dojo */ = {
 			isa = PBXGroup;
 			children = (
-				8F187817278C460100EA7BE7 /* AppDelegate.swift */,
-				8F187819278C460100EA7BE7 /* SceneDelegate.swift */,
-				8F18781B278C460100EA7BE7 /* SignUpController.swift */,
-				8F2563CF278EEC240046E79C /* Networker.swift */,
+				58FB3D3C278EFFF0002EE9EB /* Application */,
+				58FB3D3E278F0041002EE9EB /* Scenes */,
+				58FB3D44278F00BC002EE9EB /* Networker */,
 				8F187820278C460200EA7BE7 /* Assets.xcassets */,
-				8F187822278C460200EA7BE7 /* LaunchScreen.storyboard */,
 				8F187825278C460200EA7BE7 /* Info.plist */,
 			);
 			path = "FormsAndNavigation-Dojo";
@@ -200,6 +243,7 @@
 				8F18781C278C460100EA7BE7 /* SignUpController.swift in Sources */,
 				8F187818278C460100EA7BE7 /* AppDelegate.swift in Sources */,
 				8F18781A278C460100EA7BE7 /* SceneDelegate.swift in Sources */,
+				58FB3D43278F008F002EE9EB /* Analytics.swift in Sources */,
 				8F2563D0278EEC250046E79C /* Networker.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
