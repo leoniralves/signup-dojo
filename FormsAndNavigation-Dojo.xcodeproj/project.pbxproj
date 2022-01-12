@@ -9,24 +9,15 @@
 /* Begin PBXBuildFile section */
 		8F187818278C460100EA7BE7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F187817278C460100EA7BE7 /* AppDelegate.swift */; };
 		8F18781A278C460100EA7BE7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F187819278C460100EA7BE7 /* SceneDelegate.swift */; };
-		8F18781C278C460100EA7BE7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F18781B278C460100EA7BE7 /* ViewController.swift */; };
-		8F18781F278C460100EA7BE7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8F18781D278C460100EA7BE7 /* Main.storyboard */; };
+		8F18781C278C460100EA7BE7 /* SignUpController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F18781B278C460100EA7BE7 /* SignUpController.swift */; };
 		8F187821278C460200EA7BE7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8F187820278C460200EA7BE7 /* Assets.xcassets */; };
 		8F187824278C460200EA7BE7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8F187822278C460200EA7BE7 /* LaunchScreen.storyboard */; };
 		8F18782F278C460200EA7BE7 /* FormsAndNavigation_DojoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F18782E278C460200EA7BE7 /* FormsAndNavigation_DojoTests.swift */; };
-		8F187839278C460200EA7BE7 /* FormsAndNavigation_DojoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F187838278C460200EA7BE7 /* FormsAndNavigation_DojoUITests.swift */; };
-		8F18783B278C460200EA7BE7 /* FormsAndNavigation_DojoUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F18783A278C460200EA7BE7 /* FormsAndNavigation_DojoUITestsLaunchTests.swift */; };
+		8F2563D0278EEC250046E79C /* Networker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F2563CF278EEC240046E79C /* Networker.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
 		8F18782B278C460200EA7BE7 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 8F18780C278C460000EA7BE7 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 8F187813278C460100EA7BE7;
-			remoteInfo = "FormsAndNavigation-Dojo";
-		};
-		8F187835278C460200EA7BE7 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 8F18780C278C460000EA7BE7 /* Project object */;
 			proxyType = 1;
@@ -39,16 +30,13 @@
 		8F187814278C460100EA7BE7 /* FormsAndNavigation-Dojo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "FormsAndNavigation-Dojo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8F187817278C460100EA7BE7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8F187819278C460100EA7BE7 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		8F18781B278C460100EA7BE7 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		8F18781E278C460100EA7BE7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		8F18781B278C460100EA7BE7 /* SignUpController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpController.swift; sourceTree = "<group>"; };
 		8F187820278C460200EA7BE7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8F187823278C460200EA7BE7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8F187825278C460200EA7BE7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8F18782A278C460200EA7BE7 /* FormsAndNavigation-DojoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "FormsAndNavigation-DojoTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8F18782E278C460200EA7BE7 /* FormsAndNavigation_DojoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormsAndNavigation_DojoTests.swift; sourceTree = "<group>"; };
-		8F187834278C460200EA7BE7 /* FormsAndNavigation-DojoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "FormsAndNavigation-DojoUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		8F187838278C460200EA7BE7 /* FormsAndNavigation_DojoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormsAndNavigation_DojoUITests.swift; sourceTree = "<group>"; };
-		8F18783A278C460200EA7BE7 /* FormsAndNavigation_DojoUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormsAndNavigation_DojoUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		8F2563CF278EEC240046E79C /* Networker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Networker.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,13 +54,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		8F187831278C460200EA7BE7 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -81,7 +62,6 @@
 			children = (
 				8F187816278C460100EA7BE7 /* FormsAndNavigation-Dojo */,
 				8F18782D278C460200EA7BE7 /* FormsAndNavigation-DojoTests */,
-				8F187837278C460200EA7BE7 /* FormsAndNavigation-DojoUITests */,
 				8F187815278C460100EA7BE7 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -91,7 +71,6 @@
 			children = (
 				8F187814278C460100EA7BE7 /* FormsAndNavigation-Dojo.app */,
 				8F18782A278C460200EA7BE7 /* FormsAndNavigation-DojoTests.xctest */,
-				8F187834278C460200EA7BE7 /* FormsAndNavigation-DojoUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -101,8 +80,8 @@
 			children = (
 				8F187817278C460100EA7BE7 /* AppDelegate.swift */,
 				8F187819278C460100EA7BE7 /* SceneDelegate.swift */,
-				8F18781B278C460100EA7BE7 /* ViewController.swift */,
-				8F18781D278C460100EA7BE7 /* Main.storyboard */,
+				8F18781B278C460100EA7BE7 /* SignUpController.swift */,
+				8F2563CF278EEC240046E79C /* Networker.swift */,
 				8F187820278C460200EA7BE7 /* Assets.xcassets */,
 				8F187822278C460200EA7BE7 /* LaunchScreen.storyboard */,
 				8F187825278C460200EA7BE7 /* Info.plist */,
@@ -116,15 +95,6 @@
 				8F18782E278C460200EA7BE7 /* FormsAndNavigation_DojoTests.swift */,
 			);
 			path = "FormsAndNavigation-DojoTests";
-			sourceTree = "<group>";
-		};
-		8F187837278C460200EA7BE7 /* FormsAndNavigation-DojoUITests */ = {
-			isa = PBXGroup;
-			children = (
-				8F187838278C460200EA7BE7 /* FormsAndNavigation_DojoUITests.swift */,
-				8F18783A278C460200EA7BE7 /* FormsAndNavigation_DojoUITestsLaunchTests.swift */,
-			);
-			path = "FormsAndNavigation-DojoUITests";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -165,24 +135,6 @@
 			productReference = 8F18782A278C460200EA7BE7 /* FormsAndNavigation-DojoTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		8F187833278C460200EA7BE7 /* FormsAndNavigation-DojoUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 8F187844278C460200EA7BE7 /* Build configuration list for PBXNativeTarget "FormsAndNavigation-DojoUITests" */;
-			buildPhases = (
-				8F187830278C460200EA7BE7 /* Sources */,
-				8F187831278C460200EA7BE7 /* Frameworks */,
-				8F187832278C460200EA7BE7 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				8F187836278C460200EA7BE7 /* PBXTargetDependency */,
-			);
-			name = "FormsAndNavigation-DojoUITests";
-			productName = "FormsAndNavigation-DojoUITests";
-			productReference = 8F187834278C460200EA7BE7 /* FormsAndNavigation-DojoUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -197,10 +149,6 @@
 						CreatedOnToolsVersion = 13.1;
 					};
 					8F187829278C460200EA7BE7 = {
-						CreatedOnToolsVersion = 13.1;
-						TestTargetID = 8F187813278C460100EA7BE7;
-					};
-					8F187833278C460200EA7BE7 = {
 						CreatedOnToolsVersion = 13.1;
 						TestTargetID = 8F187813278C460100EA7BE7;
 					};
@@ -221,7 +169,6 @@
 			targets = (
 				8F187813278C460100EA7BE7 /* FormsAndNavigation-Dojo */,
 				8F187829278C460200EA7BE7 /* FormsAndNavigation-DojoTests */,
-				8F187833278C460200EA7BE7 /* FormsAndNavigation-DojoUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -233,18 +180,10 @@
 			files = (
 				8F187824278C460200EA7BE7 /* LaunchScreen.storyboard in Resources */,
 				8F187821278C460200EA7BE7 /* Assets.xcassets in Resources */,
-				8F18781F278C460100EA7BE7 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		8F187828278C460200EA7BE7 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		8F187832278C460200EA7BE7 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -258,9 +197,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8F18781C278C460100EA7BE7 /* ViewController.swift in Sources */,
+				8F18781C278C460100EA7BE7 /* SignUpController.swift in Sources */,
 				8F187818278C460100EA7BE7 /* AppDelegate.swift in Sources */,
 				8F18781A278C460100EA7BE7 /* SceneDelegate.swift in Sources */,
+				8F2563D0278EEC250046E79C /* Networker.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -272,15 +212,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		8F187830278C460200EA7BE7 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				8F18783B278C460200EA7BE7 /* FormsAndNavigation_DojoUITestsLaunchTests.swift in Sources */,
-				8F187839278C460200EA7BE7 /* FormsAndNavigation_DojoUITests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -289,22 +220,9 @@
 			target = 8F187813278C460100EA7BE7 /* FormsAndNavigation-Dojo */;
 			targetProxy = 8F18782B278C460200EA7BE7 /* PBXContainerItemProxy */;
 		};
-		8F187836278C460200EA7BE7 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 8F187813278C460100EA7BE7 /* FormsAndNavigation-Dojo */;
-			targetProxy = 8F187835278C460200EA7BE7 /* PBXContainerItemProxy */;
-		};
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		8F18781D278C460100EA7BE7 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				8F18781E278C460100EA7BE7 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		8F187822278C460200EA7BE7 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -437,14 +355,15 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 4AT6B8R6CS;
+				DEVELOPMENT_TEAM = F2VH4D4A4M;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "FormsAndNavigation-Dojo/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -452,8 +371,9 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.leonirad.FormsAndNavigation-Dojo";
+				PRODUCT_BUNDLE_IDENTIFIER = com.leonirad.FormsAndNavigationDojo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -465,14 +385,15 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 4AT6B8R6CS;
+				DEVELOPMENT_TEAM = F2VH4D4A4M;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "FormsAndNavigation-Dojo/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -480,8 +401,9 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.leonirad.FormsAndNavigation-Dojo";
+				PRODUCT_BUNDLE_IDENTIFIER = com.leonirad.FormsAndNavigationDojo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -538,52 +460,6 @@
 			};
 			name = Release;
 		};
-		8F187845278C460200EA7BE7 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 4AT6B8R6CS;
-				GENERATE_INFOPLIST_FILE = YES;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.leonirad.FormsAndNavigation-DojoUITests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = "FormsAndNavigation-Dojo";
-			};
-			name = Debug;
-		};
-		8F187846278C460200EA7BE7 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 4AT6B8R6CS;
-				GENERATE_INFOPLIST_FILE = YES;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.leonirad.FormsAndNavigation-DojoUITests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = "FormsAndNavigation-Dojo";
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -610,15 +486,6 @@
 			buildConfigurations = (
 				8F187842278C460200EA7BE7 /* Debug */,
 				8F187843278C460200EA7BE7 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		8F187844278C460200EA7BE7 /* Build configuration list for PBXNativeTarget "FormsAndNavigation-DojoUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				8F187845278C460200EA7BE7 /* Debug */,
-				8F187846278C460200EA7BE7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
