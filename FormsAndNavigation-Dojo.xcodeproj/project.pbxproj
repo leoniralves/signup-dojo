@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		58FB3D43278F008F002EE9EB /* Analytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58FB3D42278F008F002EE9EB /* Analytics.swift */; };
+		58FB3D46278F014B002EE9EB /* Constants+Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58FB3D45278F014B002EE9EB /* Constants+Strings.swift */; };
 		8F187818278C460100EA7BE7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F187817278C460100EA7BE7 /* AppDelegate.swift */; };
 		8F18781A278C460100EA7BE7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F187819278C460100EA7BE7 /* SceneDelegate.swift */; };
 		8F18781C278C460100EA7BE7 /* SignUpController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F18781B278C460100EA7BE7 /* SignUpController.swift */; };
@@ -29,6 +30,7 @@
 
 /* Begin PBXFileReference section */
 		58FB3D42278F008F002EE9EB /* Analytics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Analytics.swift; sourceTree = "<group>"; };
+		58FB3D45278F014B002EE9EB /* Constants+Strings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Constants+Strings.swift"; sourceTree = "<group>"; };
 		8F187814278C460100EA7BE7 /* FormsAndNavigation-Dojo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "FormsAndNavigation-Dojo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8F187817278C460100EA7BE7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8F187819278C460100EA7BE7 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -102,6 +104,14 @@
 			path = Networker;
 			sourceTree = "<group>";
 		};
+		58FB3D48278F0167002EE9EB /* Commons */ = {
+			isa = PBXGroup;
+			children = (
+				58FB3D45278F014B002EE9EB /* Constants+Strings.swift */,
+			);
+			path = Commons;
+			sourceTree = "<group>";
+		};
 		8F18780B278C460000EA7BE7 = {
 			isa = PBXGroup;
 			children = (
@@ -126,6 +136,7 @@
 				58FB3D3C278EFFF0002EE9EB /* Application */,
 				58FB3D3E278F0041002EE9EB /* Scenes */,
 				58FB3D44278F00BC002EE9EB /* Networker */,
+				58FB3D48278F0167002EE9EB /* Commons */,
 				8F187820278C460200EA7BE7 /* Assets.xcassets */,
 				8F187825278C460200EA7BE7 /* Info.plist */,
 			);
@@ -244,6 +255,7 @@
 				8F187818278C460100EA7BE7 /* AppDelegate.swift in Sources */,
 				8F18781A278C460100EA7BE7 /* SceneDelegate.swift in Sources */,
 				58FB3D43278F008F002EE9EB /* Analytics.swift in Sources */,
+				58FB3D46278F014B002EE9EB /* Constants+Strings.swift in Sources */,
 				8F2563D0278EEC250046E79C /* Networker.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
