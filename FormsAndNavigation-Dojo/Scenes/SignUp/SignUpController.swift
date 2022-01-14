@@ -17,7 +17,7 @@ protocol SignUpViewModelProtocol {
     var signUpButton: String { get }
 }
 
-final class SignUpViewModel {
+final class SignUpViewModel: SignUpViewModelProtocol {
     let title: String = "SignUp"
     let inputFirstName: String = "inputFirstName"
     let inputLastName: String = "inputLastName"
