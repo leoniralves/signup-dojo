@@ -7,6 +7,26 @@
 
 import UIKit
 
+protocol SignUpViewModelProtocol {
+    var title: String { get }
+    var inputFirstName: String { get }
+    var inputLastName: String { get }
+    var inputAge: String { get }
+    var inputEmail: String { get }
+    var inputPassword: String { get }
+    var signUpButton: String { get }
+}
+
+final class SignUpViewModel {
+    let title: String = "SignUp"
+    let inputFirstName: String = "inputFirstName"
+    let inputLastName: String = "inputLastName"
+    let inputAge: String = "inputAge"
+    let inputEmail: String = "inputEmail"
+    let inputPassword: String = "inputPassword"
+    let signUpButton: String = "Cadastrar"
+}
+
 class SignUpController: UIViewController {
     
     let inputFirstName: UITextField = .init()
@@ -15,16 +35,27 @@ class SignUpController: UIViewController {
     let inputEmail: UITextField = .init()
     let inputPassword: UITextField = .init()
     
+    private let viewModel: SignUpViewModelProtocol
+    
+    init(viewModel: SignUpViewModelProtocol) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "Teste"
+        title = viewModel.title
         view.backgroundColor = .lightGray
         
-        inputFirstName.placeholder = "Nome"
-        inputLastName.placeholder = "Sobrenome"
-        inputAge.placeholder = "Idade"
-        inputEmail.placeholder = "Email"
-        inputPassword.placeholder = "Senha"
+        inputFirstName.placeholder = viewModel.inputFirstName
+        inputLastName.placeholder = viewModel.inputLastName
+        inputAge.placeholder = viewModel.inputAge
+        inputEmail.placeholder = viewModel.inputEmail
+        inputPassword.placeholder = viewModel.inputPassword
         
         let textFieldArray: [UITextField] = [
             inputFirstName,
@@ -45,7 +76,7 @@ class SignUpController: UIViewController {
         }
         
         let signUpButton: UIButton = .init(type: .system)
-        signUpButton.setTitle("Cadastrar", for: .normal)
+        signUpButton.setTitle(viewModel.signUpButton, for: .normal)
         signUpButton.addTarget(self, action: #selector(actionSignUp(_:)), for: .touchUpInside)
         
         let containerView: UIStackView = .init(

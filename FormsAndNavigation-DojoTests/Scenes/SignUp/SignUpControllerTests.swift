@@ -10,6 +10,7 @@ import XCTest
 
 class SignUpControllerTests: XCTestCase {
 
+    
     private lazy var sut: SignUpController = {
         let sut: SignUpController = .init()
         sut.loadViewIfNeeded()
