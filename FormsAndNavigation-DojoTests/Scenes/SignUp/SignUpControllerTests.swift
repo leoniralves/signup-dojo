@@ -23,24 +23,23 @@ class SignUpControllerTests: XCTestCase {
         XCTAssertEqual(sut.title, mockViewModel.title)
     }
     
-    func test_inputLastNamePlaceholder_shouldBeValid() {
+    func test_inputLastName_shouldPlaceHolderProvidedByViewModelValue() {
         XCTAssertEqual(sut.inputLastName.placeholder, mockViewModel.inputLastName)
     }
 
-    func test_inputFirstNamePlaceholder_shouldBeValid() {
+    func test_inputFirstName_shouldPlaceHolderProvidedByViewModelValue() {
         XCTAssertEqual(sut.inputFirstName.placeholder, mockViewModel.inputFirstName)
     }
     
-    func test_inputAgeNamePlaceholder_shouldBeValid() {
+    func test_inputAge_shouldPlaceHolderProvidedByViewModelValue() {
         XCTAssertEqual(sut.inputAge.placeholder, mockViewModel.inputAge)
     }
 
-    // Colocar em funcoes separadas
-    func test_placeholders_shouldAssertCorrectValues() {
+    func test_inputPassword_shouldPlaceHolderProvidedByViewModelValue() {
         XCTAssertEqual(sut.inputPassword.placeholder, mockViewModel.inputPassword)
-        XCTAssertEqual(sut.inputLastName.placeholder, mockViewModel.inputLastName)
-        XCTAssertEqual(sut.inputFirstName.placeholder, mockViewModel.inputFirstName)
-        XCTAssertEqual(sut.inputAge.placeholder, mockViewModel.inputAge)
+    }
+    
+    func test_inputEmail_shouldPlaceHolderProvidedByViewModelValue() {
         XCTAssertEqual(sut.inputEmail.placeholder, mockViewModel.inputEmail)
     }
 }
