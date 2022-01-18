@@ -7,15 +7,20 @@
 
 import Foundation
 
+protocol AnalyticsProtocol {
+    func configuration()
+    func send(_ event: String)
+}
 
-class Analytics {
-    
-    static let shared: Analytics = .init()
-    
+class Analytics: AnalyticsProtocol {
+    // MARK: - Properties
     private var isConfigured: Bool = false
-    
+    static let shared: Analytics = .init()
+
+    // MARK: - Initializer Methods
     private init() {}
     
+    // MARK: - Public and Internal Methods
     func configuration() {
         isConfigured = true
         print(">>> \(Self.self) IS configured!")
