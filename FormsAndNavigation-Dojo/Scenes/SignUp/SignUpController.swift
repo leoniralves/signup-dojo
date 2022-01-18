@@ -7,26 +7,6 @@
 
 import UIKit
 
-protocol SignUpViewModelProtocol {
-    var title: String { get }
-    var inputFirstName: String { get }
-    var inputLastName: String { get }
-    var inputAge: String { get }
-    var inputEmail: String { get }
-    var inputPassword: String { get }
-    var signUpButton: String { get }
-}
-
-final class SignUpViewModel: SignUpViewModelProtocol {
-    let title: String = "SignUp"
-    let inputFirstName: String = "inputFirstName"
-    let inputLastName: String = "inputLastName"
-    let inputAge: String = "inputAge"
-    let inputEmail: String = "inputEmail"
-    let inputPassword: String = "inputPassword"
-    let signUpButton: String = "Cadastrar"
-}
-
 class SignUpController: UIViewController {
     
     let inputFirstName: UITextField = .init()
@@ -108,7 +88,7 @@ class SignUpController: UIViewController {
             switch result {
             case .success(let success):
                 if success {
-                    Analytics.shared.send("SignUp-Success")
+                    Analytics.shared.send(viewModel.analyticsSignUpSuccess)
                 } else {
                     Analytics.shared.send("SignUp-Failed")
                 }
