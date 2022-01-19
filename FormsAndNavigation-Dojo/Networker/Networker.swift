@@ -7,7 +7,11 @@
 
 import Foundation
 
-class Networker {
+protocol NetworkerProtocol {
+    func request(target: Networker.Target, completion: (Result<Bool, Error>) -> Void)
+}
+
+class Networker: NetworkerProtocol {
     
     enum Method {
         case POST

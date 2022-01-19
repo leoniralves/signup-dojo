@@ -9,16 +9,22 @@ import Foundation
 
 protocol SignUpPresenterProtocol {
     func trackNetworkRequest(result: Result<Bool, Error>)
+    
+    // TODO: continue
+//    func didactionSignUp
 }
 
 final class SignUpPresenter: SignUpPresenterProtocol {
     // MARK: - Properties
     private var analytics: AnalyticsProtocol
+    private let networker: NetworkerProtocol
     
     // MARK: - Initializer Methods
     init(
+        networker: NetworkerProtocol = Networker(),
         analytics: AnalyticsProtocol = Analytics.shared
     ) {
+        self.networker = networker
         self.analytics = analytics
     }
     

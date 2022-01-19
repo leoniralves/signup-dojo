@@ -81,6 +81,7 @@ class SignUpController: UIViewController {
     }
     
     @objc func actionSignUp(_ sender: UIButton) {
+        // TODO: continue
         let networker: Networker = .init()
         let target: Networker.Target = .signUp(
             firstName: inputFirstName.text!,
