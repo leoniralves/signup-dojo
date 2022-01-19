@@ -16,22 +16,23 @@ final class SignUpPresenterTests: XCTestCase {
         return .init(analytics: analyticsSpy)
     }()
     
-    func test_trackNetworkRequest_withResultSuccess_andDataTrue_shouldSendSingUpSuccess() {
+    func test_trackNetworkRequest_whenResultSuccess_andDataTrue_shouldSendSignUpSuccess() {
         sut.trackNetworkRequest(result: .success(true))
+        
 
         XCTAssertEqual(analyticsSpy.sendArgs.count, 1)
-        XCTAssertEqual(analyticsSpy.sendArgs.first, "batatinha")
-    }
-}
-
-final class AnalyticsSpy: AnalyticsProtocol {
-    private(set) var sendArgs: [String] = []
-
-    func configuration() {
-        
+        XCTAssertEqual(analyticsSpy.sendArgs.first, "SignUp-Success")
     }
     
-    func send(_ event: String) {
-        sendArgs.append(event)
+    func test_trackNetworkRequest_whenResultSuccess_andDataFalse_shouldSendSignUpFailed() {
+        sut.trackNetworkRequest(result: .success(false))
+        
+
+        XCTAssertEqual(analyticsSpy.sendArgs.count, 1)
+        XCTAssertEqual(analyticsSpy.sendArgs.first, "SignUp-Failed")
+    }
+    
+    func test_trackNetworkRequest_whenResultFailure_andHasError_shouldSendSignUpFailed() {
+        
     }
 }

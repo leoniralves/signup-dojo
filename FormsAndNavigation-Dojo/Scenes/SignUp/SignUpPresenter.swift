@@ -26,23 +26,19 @@ final class SignUpPresenter: SingUpPresenterProtocol {
     func trackNetworkRequest(result: Result<Bool, Error>) {
         switch result {
         case .success(let success):
-            trackNetworkRequestSuccess(success: success, error: nil)
+            trackNetworkRequest(success: success, error: nil)
         case .failure(let error):
-            trackNetworkRequestSuccess(success: false, error: error)
+            trackNetworkRequest(success: false, error: error)
         }
     }
     
     // MARK: - Private Methods
-    private func trackNetworkRequestSuccess(
+    private func trackNetworkRequest(
         success: Bool,
         error: Error?
     ) {
-        var requestState: String = ""
+        let requestState: String = success ? "Success" : "Failed"
         
-        if success {
-            requestState = success ? "Success" : "Failed"
-        }
-        
-        analytics.send("SignUp-" + requestState)
+        analytics.send("SignUp-\(requestState)")
     }
 }
