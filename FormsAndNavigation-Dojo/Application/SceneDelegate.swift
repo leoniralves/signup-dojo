@@ -18,7 +18,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
         guard let scene = (scene as? UIWindowScene) else { return }
         
-        let viewController: SignUpController = .init(viewModel: SignUpViewModel())
+        let viewController: SignUpController = .init(
+            viewModel: SignUpViewModel(),
+            presenter: SignUpPresenter()
+        )
         let navController: UINavigationController = .init(rootViewController: viewController)
         
         window = UIWindow(windowScene: scene)

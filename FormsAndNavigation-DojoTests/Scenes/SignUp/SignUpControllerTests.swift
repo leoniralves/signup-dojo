@@ -9,16 +9,21 @@ import XCTest
 @testable import FormsAndNavigation_Dojo
 
 class SignUpControllerTests: XCTestCase {
-
+    // MARK: - Properties
     private let mockViewModel: SignUpViewModelMock = .init()
     
+    // MARK: - Computed Properties
     private lazy var sut: SignUpController = {
-        let sut: SignUpController = .init(viewModel: mockViewModel)
+        let sut: SignUpController = .init(
+            viewModel: mockViewModel,
+            presenter: SignUpPresenter()
+        )
         sut.loadViewIfNeeded()
 
         return sut
     }()
     
+    // MARK: - Test Methods
     func test_title_shouldBeValid() {
         XCTAssertEqual(sut.title, mockViewModel.title)
     }

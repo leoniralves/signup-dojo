@@ -8,17 +8,23 @@
 import UIKit
 
 class SignUpController: UIViewController {
+    // MARK: - Properties
+    private let viewModel: SignUpViewModelProtocol
+    private let presenter: SignUpPresenterProtocol
     
+    // MARK: - UIComponents
     let inputFirstName: UITextField = .init()
     let inputLastName: UITextField = .init()
     let inputAge: UITextField = .init()
     let inputEmail: UITextField = .init()
     let inputPassword: UITextField = .init()
     
-    private let viewModel: SignUpViewModelProtocol
-    
-    init(viewModel: SignUpViewModelProtocol) {
+    init(
+        viewModel: SignUpViewModelProtocol,
+        presenter: SignUpPresenterProtocol
+    ) {
         self.viewModel = viewModel
+        self.presenter = presenter
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -85,16 +91,7 @@ class SignUpController: UIViewController {
         )
         
         networker.request(target: target) { result in
-            switch result {
-            case .success(let success):
-                if success {
-                    //Analytics.shared.send(viewModel.analyticsSignUpSuccess)
-                } else {
-                    Analytics.shared.send("SignUp-Failed")
-                }
-            case .failure(let _):
-                Analytics.shared.send("SignUp-Error")
-            }
+            presenter.trackNetworkRequest(result: result)
         }
     }
 }

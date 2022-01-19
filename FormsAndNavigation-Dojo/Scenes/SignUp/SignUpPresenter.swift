@@ -7,12 +7,12 @@
 
 import Foundation
 
-protocol SingUpPresenterProtocol {
+protocol SignUpPresenterProtocol {
     func trackNetworkRequest(result: Result<Bool, Error>)
 }
 
-final class SignUpPresenter: SingUpPresenterProtocol {
-    
+final class SignUpPresenter: SignUpPresenterProtocol {
+    // MARK: - Properties
     private var analytics: AnalyticsProtocol
     
     // MARK: - Initializer Methods
@@ -37,7 +37,8 @@ final class SignUpPresenter: SingUpPresenterProtocol {
         success: Bool,
         error: Error?
     ) {
-        let requestState: String = success ? "Success" : "Failed"
+        let errorState: String = error != nil ? "Error" : "Failed"
+        let requestState: String = success ? "Success" : errorState
         
         analytics.send("SignUp-\(requestState)")
     }
