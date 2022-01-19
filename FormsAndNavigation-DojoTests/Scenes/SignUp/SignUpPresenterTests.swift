@@ -10,7 +10,28 @@ import XCTest
 
 final class SignUpPresenterTests: XCTestCase {
     
-    func test_() {
-        XCTFail()
+    private var analyticsSpy: AnalyticsSpy = .init()
+
+    private lazy var sut: SignUpPresenter = {
+        return .init(analytics: analyticsSpy)
+    }()
+    
+    func test_trackNetworkRequest_withResultSuccess_andDataTrue_shouldSendSingUpSuccess() {
+        sut.trackNetworkRequest(result: .success(true))
+
+        XCTAssertEqual(analyticsSpy.sendArgs.count, 1)
+        XCTAssertEqual(analyticsSpy.sendArgs.first, "batatinha")
+    }
+}
+
+final class AnalyticsSpy: AnalyticsProtocol {
+    private(set) var sendArgs: [String] = []
+
+    func configuration() {
+        
+    }
+    
+    func send(_ event: String) {
+        sendArgs.append(event)
     }
 }

@@ -88,7 +88,7 @@ class SignUpController: UIViewController {
             switch result {
             case .success(let success):
                 if success {
-                    Analytics.shared.send(viewModel.analyticsSignUpSuccess)
+                    //Analytics.shared.send(viewModel.analyticsSignUpSuccess)
                 } else {
                     Analytics.shared.send("SignUp-Failed")
                 }
