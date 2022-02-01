@@ -8,10 +8,7 @@
 import Foundation
 
 protocol SignUpPresenterProtocol {
-    func trackNetworkRequest(result: Result<Bool, Error>)
-    
-    // TODO: continue
-//    func didactionSignUp
+    func userDidRequestToSignUp(user: SignUpModel)
 }
 
 final class SignUpPresenter: SignUpPresenterProtocol {
@@ -29,7 +26,19 @@ final class SignUpPresenter: SignUpPresenterProtocol {
     }
     
     // MARK: - Public and Internal Methods
-    func trackNetworkRequest(result: Result<Bool, Error>) {
+    func userDidRequestToSignUp(user: SignUpModel) {
+        networker.request(target: .signUp(
+            firstName: user.firstName!,
+            lastName: user.lastName!,
+            age: user.age!,
+            email: user.email!,
+            password: user.password!
+        )) { result in
+            trackNetworkRequest(result: result)
+        }
+    }
+    
+    private func trackNetworkRequest(result: Result<Bool, Error>) {
         switch result {
         case .success(let success):
             trackNetworkRequest(success: success, error: nil)

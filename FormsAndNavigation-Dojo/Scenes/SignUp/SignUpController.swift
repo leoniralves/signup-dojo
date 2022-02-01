@@ -81,18 +81,18 @@ class SignUpController: UIViewController {
     }
     
     @objc func actionSignUp(_ sender: UIButton) {
-        // TODO: continue
-        let networker: Networker = .init()
-        let target: Networker.Target = .signUp(
-            firstName: inputFirstName.text!,
-            lastName: inputLastName.text!,
-            age: inputAge.text!,
-            email: inputEmail.text!,
-            password: inputPassword.text!
-        )
+        let userSignUp: SignUpModel = getUserSignUp()
         
-        networker.request(target: target) { result in
-            presenter.trackNetworkRequest(result: result)
-        }
+        presenter.userDidRequestToSignUp(user: userSignUp)
+    }
+    
+    private func getUserSignUp() -> SignUpModel {
+        return .init(
+            firstName: inputFirstName.text,
+            lastName: inputLastName.text,
+            age: inputAge.text,
+            email: inputEmail.text,
+            password: inputPassword.text
+        )
     }
 }

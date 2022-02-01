@@ -8,5 +8,9 @@
 import Foundation
 
 struct SignUpModel {
-    // TODO: continue
+    let firstName: String?
+    let lastName: String?
+    let age: String?
+    let email: String?
+    let password: String?
 }
