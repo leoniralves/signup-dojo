@@ -41,6 +41,7 @@ final class SignUpPresenterTests: XCTestCase {
     
     func test_zero() {
         sut.userDidRequestToSignUp(user: .make())
+        thenAssertAnalyticsWasCalledOnce(event: "Success")
     }
 }
 

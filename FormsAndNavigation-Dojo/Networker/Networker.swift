@@ -21,8 +21,8 @@ class Networker: NetworkerProtocol {
     enum Target {
         case signUp(
             firstName: String,
-            lastName: String,
-            age: String,
+            lastName: String?,
+            age: String?,
             email: String,
             password: String
         )
@@ -41,7 +41,7 @@ class Networker: NetworkerProtocol {
             }
         }
         
-        var params: [String: String] {
+        var params: [String: String?] {
             switch self {
             case let .signUp(
                 firstName,

@@ -28,11 +28,11 @@ final class SignUpPresenter: SignUpPresenterProtocol {
     // MARK: - Public and Internal Methods
     func userDidRequestToSignUp(user: SignUpModel) {
         networker.request(target: .signUp(
-            firstName: user.firstName!,
-            lastName: user.lastName!,
-            age: user.age!,
-            email: user.email!,
-            password: user.password!
+            firstName: user.firstName,
+            lastName: user.lastName,
+            age: user.age,
+            email: user.email,
+            password: user.password
         )) { result in
             trackNetworkRequest(result: result)
         }
