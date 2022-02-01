@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		588B559627983AE400FB584E /* AnalyticsSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 588B559527983AE400FB584E /* AnalyticsSpy.swift */; };
+		58F3FA4E27A961C40079B2D8 /* NetworkerSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58F3FA4D27A961C40079B2D8 /* NetworkerSpy.swift */; };
 		58FB3D43278F008F002EE9EB /* Analytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58FB3D42278F008F002EE9EB /* Analytics.swift */; };
 		58FB3D46278F014B002EE9EB /* Constants+Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58FB3D45278F014B002EE9EB /* Constants+Strings.swift */; };
 		8F187818278C460100EA7BE7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F187817278C460100EA7BE7 /* AppDelegate.swift */; };
@@ -37,6 +38,7 @@
 
 /* Begin PBXFileReference section */
 		588B559527983AE400FB584E /* AnalyticsSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsSpy.swift; sourceTree = "<group>"; };
+		58F3FA4D27A961C40079B2D8 /* NetworkerSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkerSpy.swift; sourceTree = "<group>"; };
 		58FB3D42278F008F002EE9EB /* Analytics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Analytics.swift; sourceTree = "<group>"; };
 		58FB3D45278F014B002EE9EB /* Constants+Strings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Constants+Strings.swift"; sourceTree = "<group>"; };
 		8F187814278C460100EA7BE7 /* FormsAndNavigation-Dojo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "FormsAndNavigation-Dojo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -79,6 +81,7 @@
 			isa = PBXGroup;
 			children = (
 				588B559527983AE400FB584E /* AnalyticsSpy.swift */,
+				58F3FA4D27A961C40079B2D8 /* NetworkerSpy.swift */,
 			);
 			path = Spies;
 			sourceTree = "<group>";
@@ -330,6 +333,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8F9D87E92796F0320088CD8E /* SignUpPresenterTests.swift in Sources */,
+				58F3FA4E27A961C40079B2D8 /* NetworkerSpy.swift in Sources */,
 				588B559627983AE400FB584E /* AnalyticsSpy.swift in Sources */,
 				92E1989F2791A64B00947D47 /* SignUpViewModelMock.swift in Sources */,
 				C8B787B6278F0774008BD4D8 /* SignUpControllerTests.swift in Sources */,

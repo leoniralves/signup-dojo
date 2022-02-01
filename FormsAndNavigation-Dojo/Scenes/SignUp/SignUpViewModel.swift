@@ -28,6 +28,4 @@ final class SignUpViewModel: SignUpViewModelProtocol {
     let inputEmail: String = "inputEmail"
     let inputPassword: String = "inputPassword"
     let signUpButton: String = "Cadastrar"
-    
-    
 }

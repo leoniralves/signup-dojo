@@ -10,29 +10,55 @@ import XCTest
 
 final class SignUpPresenterTests: XCTestCase {
     // MARK: - Properties
-    private var analyticsSpy: AnalyticsSpy = .init()
+    private let analyticsSpy: AnalyticsSpy = .init()
+    private let networkerSpy: NetworkerSpy = .init()
 
     private lazy var sut: SignUpPresenter = {
-        return .init(analytics: analyticsSpy)
+        return .init(
+            networker: networkerSpy,
+            analytics: analyticsSpy
+        )
     }()
     
     // MARK: - Test Methods
-    func test_trackNetworkRequest_whenResultSuccess_andDataTrue_shouldSendSignUpSuccess() {
-        sut.trackNetworkRequest(result: .success(true))
-        
-        thenAssertAnalyticsWasCalledOnce(event: "Success")
-    }
+//    func test_trackNetworkRequest_whenResultSuccess_andDataTrue_shouldSendSignUpSuccess() {
+//        sut.trackNetworkRequest(result: .success(true))
+//
+//        thenAssertAnalyticsWasCalledOnce(event: "Success")
+//    }
+//
+//    func test_trackNetworkRequest_whenResultSuccess_andDataFalse_shouldSendSignUpFailed() {
+//        sut.trackNetworkRequest(result: .success(false))
+//
+//        thenAssertAnalyticsWasCalledOnce(event: "Failed")
+//    }
+//
+//    func test_trackNetworkRequest_whenResultFailure_andHasError_shouldSendSignUpFailed() {
+//        sut.trackNetworkRequest(result: .failure(DummyError.dummy))
+//
+//        thenAssertAnalyticsWasCalledOnce(event: "Error")
+//    }
     
-    func test_trackNetworkRequest_whenResultSuccess_andDataFalse_shouldSendSignUpFailed() {
-        sut.trackNetworkRequest(result: .success(false))
-        
-        thenAssertAnalyticsWasCalledOnce(event: "Failed")
+    func test_zero() {
+        sut.userDidRequestToSignUp(user: .make())
     }
-    
-    func test_trackNetworkRequest_whenResultFailure_andHasError_shouldSendSignUpFailed() {
-        sut.trackNetworkRequest(result: .failure(DummyError.dummy))
-        
-        thenAssertAnalyticsWasCalledOnce(event: "Error")
+}
+
+extension SignUpModel {
+    static func make(
+        firstName: String? = nil,
+        lastName: String? = nil,
+        age: String? = nil,
+        email: String? = nil,
+        password: String? = nil
+    ) -> Self {
+        .init(
+            firstName: firstName,
+            lastName: lastName,
+            age: age,
+            email: email,
+            password: password
+        )
     }
 }
 
