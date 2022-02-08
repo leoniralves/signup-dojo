@@ -39,19 +39,20 @@ final class SignUpPresenterTests: XCTestCase {
 //        thenAssertAnalyticsWasCalledOnce(event: "Error")
 //    }
     
-    func test_zero() {
-        sut.userDidRequestToSignUp(user: .make())
+    func test_userDidRequestToSignUp_whenGetFirstNameEmailPasswordEmpty_shouldNotCallSignUp() {
+        sut.userDidRequestToSignUp(user: .make(firstName: "", email: "", password: ""))
+        
         thenAssertAnalyticsWasCalledOnce(event: "Success")
     }
 }
 
 extension SignUpModel {
     static func make(
-        firstName: String? = nil,
+        firstName: String = "dummyfirstName",
         lastName: String? = nil,
         age: String? = nil,
-        email: String? = nil,
-        password: String? = nil
+        email: String = "dummyemail",
+        password: String = "dummypassword"
     ) -> Self {
         .init(
             firstName: firstName,
