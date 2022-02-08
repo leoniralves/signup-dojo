@@ -39,20 +39,26 @@ final class SignUpPresenterTests: XCTestCase {
 //        thenAssertAnalyticsWasCalledOnce(event: "Error")
 //    }
     
-    func test_userDidRequestToSignUp_whenGetFirstNameEmailPasswordEmpty_shouldNotCallSignUp() {
-        sut.userDidRequestToSignUp(user: .make(firstName: "", email: "", password: ""))
+    func test_userDidRequestToSignUp_whenAllParametersIsNil_shouldNotCallSignUp() {
+        sut.userDidRequestToSignUp(user: .make())
         
-        thenAssertAnalyticsWasCalledOnce(event: "Success")
+        thenAssertAnalyticsWasNeverCalled()
+    }
+
+    func test_userDidRequestToSignUp_whenGetFirstNameEmailPasswordNotEmpty_shouldCallSignUp() {
+        sut.userDidRequestToSignUp(user: .make())
+        
+        thenAssertAnalyticsWasNeverCalled()
     }
 }
 
 extension SignUpModel {
     static func make(
-        firstName: String = "dummyfirstName",
+        firstName: String? = nil,
         lastName: String? = nil,
         age: String? = nil,
-        email: String = "dummyemail",
-        password: String = "dummypassword"
+        email: String? = nil,
+        password: String? = nil
     ) -> Self {
         .init(
             firstName: firstName,
@@ -88,6 +94,18 @@ extension SignUpPresenterTests {
         XCTAssertEqual(
             analyticsSpy.sendArgs.first,
             "SignUp-\(event)",
+            file: file,
+            line: line
+        )
+    }
+
+    func thenAssertAnalyticsWasNeverCalled(
+        file: StaticString = #file,
+        line: UInt = #line
+    ) {
+        XCTAssertEqual(
+            analyticsSpy.sendArgs.count,
+            0,
             file: file,
             line: line
         )
