@@ -28,7 +28,10 @@ final class SignUpPresenter: SignUpPresenterProtocol {
     // MARK: - Public and Internal Methods
     func userDidRequestToSignUp(user: SignUpModel) {
         
-        guard let firstName = user.firstName, let email = user.email, let password = user.password else {
+        guard let firstName = user.firstName,
+              let email = user.email,
+              let password = user.password
+        else {
             return
         }
         

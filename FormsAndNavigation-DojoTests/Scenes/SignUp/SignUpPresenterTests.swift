@@ -39,13 +39,13 @@ final class SignUpPresenterTests: XCTestCase {
 //        thenAssertAnalyticsWasCalledOnce(event: "Error")
 //    }
     
-    func test_userDidRequestToSignUp_whenAllParametersIsNil_shouldNotCallSignUp() {
+    func test_userDidRequestToSignUp_whenAllParametersAreNil_shouldNotCallAnalyticsSend() {
         sut.userDidRequestToSignUp(user: .make())
         
         thenAssertAnalyticsWasNeverCalled()
     }
 
-    func test_userDidRequestToSignUp_whenGetFirstNameEmailPasswordNotEmpty_shouldCallSignUp() {
+    func test_userDidRequestToSignUp_whenGetFirstNameEmailPasswordNotEmpty_shouldNotCallAnalyticsSend() {
         sut.userDidRequestToSignUp(user: .make())
         
         thenAssertAnalyticsWasNeverCalled()
@@ -84,16 +84,8 @@ extension SignUpPresenterTests {
         file: StaticString = #file,
         line: UInt = #line
     ) {
-        XCTAssertEqual(
-            analyticsSpy.sendArgs.count,
-            1,
-            file: file,
-            line: line
-        )
-        
-        XCTAssertEqual(
-            analyticsSpy.sendArgs.first,
-            "SignUp-\(event)",
+        analyticsSpy.sendVerifyArgs(
+            event: event,
             file: file,
             line: line
         )
@@ -103,9 +95,7 @@ extension SignUpPresenterTests {
         file: StaticString = #file,
         line: UInt = #line
     ) {
-        XCTAssertEqual(
-            analyticsSpy.sendArgs.count,
-            0,
+        analyticsSpy.sendNeverCalled(
             file: file,
             line: line
         )
