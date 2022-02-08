@@ -7,11 +7,15 @@
 
 import Foundation
 
-protocol SignUpPresenterProtocol {
+protocol SignUpPresenterInput {
     func userDidRequestToSignUp(user: SignUpModel)
 }
 
-final class SignUpPresenter: SignUpPresenterProtocol {
+protocol SignUpPresenterOutput {
+    
+}
+
+final class SignUpPresenter: SignUpPresenterInput {
     // MARK: - Properties
     private var analytics: AnalyticsProtocol
     private let networker: NetworkerProtocol
@@ -44,6 +48,24 @@ final class SignUpPresenter: SignUpPresenterProtocol {
         )) { result in
             trackNetworkRequest(result: result)
         }
+    }
+    
+    private func verifyUserData(user: SignUpModel) -> Bool {
+        guard verifyUserFirstName(name: user.firstName) else {
+            return false
+        }
+        
+        return true
+    }
+    
+    private func verifyUserFirstName(name: String?) -> Bool {
+        guard let firstName = name else {
+            //TODO: Criar funções de output de erro e testar cenário
+            return false
+        }
+
+        
+        return firstName.count >= 10 && firstName.count <= 30
     }
     
     private func trackNetworkRequest(result: Result<Bool, Error>) {

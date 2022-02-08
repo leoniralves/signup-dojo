@@ -10,7 +10,7 @@ import UIKit
 class SignUpController: UIViewController {
     // MARK: - Properties
     private let viewModel: SignUpViewModelProtocol
-    private let presenter: SignUpPresenterProtocol
+    private let presenter: SignUpPresenterInput
     
     // MARK: - UIComponents
     let inputFirstName: UITextField = .init()
@@ -21,7 +21,7 @@ class SignUpController: UIViewController {
     
     init(
         viewModel: SignUpViewModelProtocol,
-        presenter: SignUpPresenterProtocol
+        presenter: SignUpPresenterInput
     ) {
         self.viewModel = viewModel
         self.presenter = presenter
