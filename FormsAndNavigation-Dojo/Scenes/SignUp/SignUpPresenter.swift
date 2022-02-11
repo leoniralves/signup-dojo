@@ -6,27 +6,31 @@
 //
 
 import Foundation
+import UIKit
 
 protocol SignUpPresenterInput {
     func userDidRequestToSignUp(user: SignUpModel)
 }
 
 protocol SignUpPresenterOutput {
-    
+    func textFieldInputError(error: String, for textField: UITextField?)
 }
 
 final class SignUpPresenter: SignUpPresenterInput {
     // MARK: - Properties
     private var analytics: AnalyticsProtocol
     private let networker: NetworkerProtocol
+    private let output: SignUpPresenterOutput
     
     // MARK: - Initializer Methods
     init(
         networker: NetworkerProtocol = Networker(),
-        analytics: AnalyticsProtocol = Analytics.shared
+        analytics: AnalyticsProtocol = Analytics.shared,
+        output: SignUpPresenterOutput
     ) {
         self.networker = networker
         self.analytics = analytics
+        self.output = output
     }
     
     // MARK: - Public and Internal Methods
@@ -58,15 +62,20 @@ final class SignUpPresenter: SignUpPresenterInput {
         return true
     }
     
-    private func verifyUserFirstName(name: String?) -> Bool {
+    func verifyUserFirstName(
+        name: String?,
+        textField: UITextField?
+    ) -> Bool {
         guard let firstName = name else {
-            //TODO: Criar funções de output de erro e testar cenário
+            //TODO: Criar funções de output de erro ✅ e testar cenário
+            output.textFieldInputError(error: "", for: textField)
             return false
         }
 
-        
         return firstName.count >= 10 && firstName.count <= 30
     }
+    
+    
     
     private func trackNetworkRequest(result: Result<Bool, Error>) {
         switch result {
