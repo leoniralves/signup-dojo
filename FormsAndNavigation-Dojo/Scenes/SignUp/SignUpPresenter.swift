@@ -12,24 +12,30 @@ protocol SignUpPresenterInput {
     func userDidRequestToSignUp(user: SignUpModel)
 }
 
-protocol SignUpPresenterOutput {
-    func textFieldInputError(error: String, for textField: UITextField?)
+protocol SignUpPresenterOutput: AnyObject {
+    func textFieldInputError(error: String, for textField: FieldType)
+}
+
+enum FieldType {
+    case name
 }
 
 final class SignUpPresenter: SignUpPresenterInput {
     // MARK: - Properties
     private var analytics: AnalyticsProtocol
     private let networker: NetworkerProtocol
-    private let output: SignUpPresenterOutput
+    private weak var output: SignUpPresenterOutput?
     
     // MARK: - Initializer Methods
     init(
         networker: NetworkerProtocol = Networker(),
-        analytics: AnalyticsProtocol = Analytics.shared,
-        output: SignUpPresenterOutput
+        analytics: AnalyticsProtocol = Analytics.shared
     ) {
         self.networker = networker
         self.analytics = analytics
+    }
+
+    func setOutput(output: SignUpPresenterOutput?) {
         self.output = output
     }
     
@@ -62,17 +68,14 @@ final class SignUpPresenter: SignUpPresenterInput {
         return true
     }
     
-    func verifyUserFirstName(
-        name: String?,
-        textField: UITextField?
-    ) -> Bool {
-        guard let firstName = name else {
+    func verifyUserFirstName(name: String?) -> Bool {
+        guard let firstName = name, firstName.count >= 10 && firstName.count <= 30  else {
             //TODO: Criar funções de output de erro ✅ e testar cenário
-            output.textFieldInputError(error: "", for: textField)
+            output?.textFieldInputError(error: "", for: .name)
             return false
         }
 
-        return firstName.count >= 10 && firstName.count <= 30
+        return true
     }
     
     
