@@ -9,10 +9,13 @@ import Foundation
 @testable import FormsAndNavigation_Dojo
 
 final class SignUpPresenterOutputSpy: SignUpPresenterOutput {
+    // MARK: - Properties
+    var textFieldInputErrorArgs: [FieldTypeError] = []
     
-    var textFieldInputError: [FieldTypeError] = []
-    
+    // MARK: - SignUpPresenterOutput Methods
     func textFieldInputError(for fieldType: FieldTypeError) {
-        
+        textFieldInputErrorArgs.append(fieldType)
     }
+    
+    // TODO: - Começar por aqui escrevendo os métodos de verificação de chamadas do método `textFieldInputError`
 }

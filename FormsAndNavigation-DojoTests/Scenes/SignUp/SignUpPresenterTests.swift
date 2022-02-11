@@ -12,33 +12,21 @@ final class SignUpPresenterTests: XCTestCase {
     // MARK: - Properties
     private let analyticsSpy: AnalyticsSpy = .init()
     private let networkerSpy: NetworkerSpy = .init()
+    private let signUpPresenterSpy: SignUpPresenterOutputSpy = .init()
 
+    // MARK: - Computed Properties
     private lazy var sut: SignUpPresenter = {
-        return .init(
+        let presenter: SignUpPresenter = .init(
             networker: networkerSpy,
             analytics: analyticsSpy
         )
+        
+        presenter.setOutput(output: signUpPresenterSpy)
+        
+        return presenter
     }()
     
     // MARK: - Test Methods
-//    func test_trackNetworkRequest_whenResultSuccess_andDataTrue_shouldSendSignUpSuccess() {
-//        sut.trackNetworkRequest(result: .success(true))
-//
-//        thenAssertAnalyticsWasCalledOnce(event: "Success")
-//    }
-//
-//    func test_trackNetworkRequest_whenResultSuccess_andDataFalse_shouldSendSignUpFailed() {
-//        sut.trackNetworkRequest(result: .success(false))
-//
-//        thenAssertAnalyticsWasCalledOnce(event: "Failed")
-//    }
-//
-//    func test_trackNetworkRequest_whenResultFailure_andHasError_shouldSendSignUpFailed() {
-//        sut.trackNetworkRequest(result: .failure(DummyError.dummy))
-//
-//        thenAssertAnalyticsWasCalledOnce(event: "Error")
-//    }
-    
     func test_userDidRequestToSignUp_whenAllParametersAreNil_shouldNotCallAnalyticsSend() {
         sut.userDidRequestToSignUp(user: .make())
         
@@ -49,6 +37,12 @@ final class SignUpPresenterTests: XCTestCase {
         sut.userDidRequestToSignUp(user: .make())
         
         thenAssertAnalyticsWasNeverCalled()
+    }
+    
+    func test_userDidRequestToSignUp_whenUserDataFirstNameIsNil_shouldCallOutputTextFieldErrorWithNameFieldType() {
+        sut.userDidRequestToSignUp(user: .make())
+        
+        
     }
 }
 

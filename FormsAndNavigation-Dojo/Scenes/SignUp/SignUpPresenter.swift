@@ -41,20 +41,16 @@ final class SignUpPresenter: SignUpPresenterInput {
     
     // MARK: - Public and Internal Methods
     func userDidRequestToSignUp(user: SignUpModel) {
-        
-        guard let firstName = user.firstName,
-              let email = user.email,
-              let password = user.password
-        else {
+        guard verifyUserData(user: user) else {
             return
         }
         
         networker.request(target: .signUp(
-            firstName: firstName,
+            firstName: user.firstName ?? "Xablau",
             lastName: user.lastName,
             age: user.age,
-            email: email,
-            password: password
+            email: user.email ?? "Xablau",
+            password: user.password ?? "Xablau"
         )) { result in
             trackNetworkRequest(result: result)
         }
@@ -68,7 +64,7 @@ final class SignUpPresenter: SignUpPresenterInput {
         return true
     }
     
-    func verifyUserFirstName(name: String?) -> Bool {
+    private func verifyUserFirstName(name: String?) -> Bool {
         guard let firstName = name, firstName.count >= 10 && firstName.count <= 30  else {
             //TODO: Criar funções de output de erro ✅ e testar cenário
             output?.textFieldInputError(for: .name)
