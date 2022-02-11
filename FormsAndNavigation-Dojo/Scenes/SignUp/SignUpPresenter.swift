@@ -13,11 +13,11 @@ protocol SignUpPresenterInput {
 }
 
 protocol SignUpPresenterOutput: AnyObject {
-    func textFieldInputError(error: String, for textField: FieldType)
+    func textFieldInputError(for fieldType: FieldTypeError)
 }
 
-enum FieldType {
-    case name
+enum FieldTypeError: String {
+    case name = "O nome deve ter entre 10 e 30 caracteres"
 }
 
 final class SignUpPresenter: SignUpPresenterInput {
@@ -71,13 +71,12 @@ final class SignUpPresenter: SignUpPresenterInput {
     func verifyUserFirstName(name: String?) -> Bool {
         guard let firstName = name, firstName.count >= 10 && firstName.count <= 30  else {
             //TODO: Criar funções de output de erro ✅ e testar cenário
-            output?.textFieldInputError(error: "", for: .name)
+            output?.textFieldInputError(for: .name)
             return false
         }
 
         return true
     }
-    
     
     
     private func trackNetworkRequest(result: Result<Bool, Error>) {
