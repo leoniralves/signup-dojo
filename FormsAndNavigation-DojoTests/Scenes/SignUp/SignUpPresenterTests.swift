@@ -44,6 +44,28 @@ final class SignUpPresenterTests: XCTestCase {
         
         outputSpy.verifyTextFieldInputErrorWasCalledOnce(error: .name)
     }
+    
+    func test_userDidRequestToSignUp_whenUserDataFirstNameIsLessThan10_shouldCallOutputTextFieldErrorWithNameFieldType() {
+        let dummyFirstName: String = givenStringOfSize(9)
+        sut.userDidRequestToSignUp(user: .make(firstName: dummyFirstName))
+        
+        outputSpy.verifyTextFieldInputErrorWasCalledOnce(error: .name)
+    }
+    
+    func test_userDidRequestToSignUp_whenUserDataFirstNameIsGreatherThan30_shouldCallOutputTextFieldErrorWithNameFieldType() {
+        let dummyFirstName: String = givenStringOfSize(31)
+        sut.userDidRequestToSignUp(user: .make(firstName: dummyFirstName))
+        
+        outputSpy.verifyTextFieldInputErrorWasCalledOnce(error: .name)
+    }
+    
+    private func givenStringOfSize(_ count: Int) -> String {
+        var dummy: String = ""
+        for _ in 0..<count {
+            dummy.append("a")
+        }
+        return dummy
+    }
 }
 
 // MARK: - Mock
