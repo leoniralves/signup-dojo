@@ -12,7 +12,7 @@ final class SignUpPresenterTests: XCTestCase {
     // MARK: - Properties
     private let analyticsSpy: AnalyticsSpy = .init()
     private let networkerSpy: NetworkerSpy = .init()
-    private let signUpPresenterSpy: SignUpPresenterOutputSpy = .init()
+    private let outputSpy: SignUpPresenterOutputSpy = .init()
 
     // MARK: - Computed Properties
     private lazy var sut: SignUpPresenter = {
@@ -21,7 +21,7 @@ final class SignUpPresenterTests: XCTestCase {
             analytics: analyticsSpy
         )
         
-        presenter.setOutput(output: signUpPresenterSpy)
+        presenter.setOutput(output: outputSpy)
         
         return presenter
     }()
@@ -42,25 +42,7 @@ final class SignUpPresenterTests: XCTestCase {
     func test_userDidRequestToSignUp_whenUserDataFirstNameIsNil_shouldCallOutputTextFieldErrorWithNameFieldType() {
         sut.userDidRequestToSignUp(user: .make())
         
-        
-    }
-}
-
-extension SignUpModel {
-    static func make(
-        firstName: String? = nil,
-        lastName: String? = nil,
-        age: String? = nil,
-        email: String? = nil,
-        password: String? = nil
-    ) -> Self {
-        .init(
-            firstName: firstName,
-            lastName: lastName,
-            age: age,
-            email: email,
-            password: password
-        )
+        outputSpy.verifyTextFieldInputErrorWasCalledOnce(error: .name)
     }
 }
 
