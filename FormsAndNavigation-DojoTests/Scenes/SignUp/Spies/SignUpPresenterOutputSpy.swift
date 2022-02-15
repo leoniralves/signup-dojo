@@ -25,7 +25,11 @@ final class SignUpPresenterOutputSpy: SignUpPresenterOutput {
         line: UInt = #line
     ) {
         guard textFieldInputErrorArgs.count == 1 else {
-            XCTFail("Method textFieldInputError expected once, but was called \(textFieldInputErrorArgs.count)")
+            XCTFail(
+                "Method textFieldInputError expected once, but was called \(textFieldInputErrorArgs.count)",
+                file: file,
+                line: line
+            )
             return
         }
         
@@ -45,26 +49,13 @@ final class SignUpPresenterOutputSpy: SignUpPresenterOutput {
     }
     
     func verifyTextFieldInputErrorWasNeverCalled(
-        error: FieldTypeError,
         file: StaticString = #file,
         line: UInt = #line
     ) {
-        guard textFieldInputErrorArgs.count == 0 else {
-            XCTFail("Method textFieldInputError expected 0, but was called \(textFieldInputErrorArgs.count)")
-            return
-        }
-        
-        // TODO: Finish this neverCalled assertions
         XCTAssertEqual(
-            error,
-            textFieldInputErrorArgs.first,
-            file: file,
-            line: line
-        )
-        
-        XCTAssertEqual(
-            error.rawValue,
-            textFieldInputErrorArgs.first?.rawValue,
+            textFieldInputErrorArgs.count,
+            0,
+            "Method textFieldInputError expected 0, but was called \(textFieldInputErrorArgs.count)",
             file: file,
             line: line
         )

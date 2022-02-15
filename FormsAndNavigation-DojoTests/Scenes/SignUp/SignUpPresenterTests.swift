@@ -59,22 +59,28 @@ final class SignUpPresenterTests: XCTestCase {
         sut.userDidRequestToSignUp(user: .make(firstName: dummyFirstName))
         
         outputSpy.verifyTextFieldInputErrorWasCalledOnce(error: .name)
+    }
+    
+    func test_userDidRequestToSignUp_whenUserDataFirstNameIsGreatherThan30_shouldNeverCallAnalytics() {
+        let dummyFirstName: String = givenStringOfSize(31)
+        sut.userDidRequestToSignUp(user: .make(firstName: dummyFirstName))
+        
         thenAssertAnalyticsWasNeverCalled()
     }
     
-    func test_userDidRequestToSignUp_whenUserDataFirstNameHasTheRightSize_shouldNotCallOutputTextFieldErrorWithNameFieldType() {
+    func test_userDidRequestToSignUp_whenUserDataFirstNameIsGreatherThanOrEqual10AndLessThanOrEqual30_shouldNotCallOutputTextFieldErrorWithNameFieldType() {
         let dummyFirstName: String = givenStringOfSize(10)
         sut.userDidRequestToSignUp(user: .make(firstName: dummyFirstName))
         
-        outputSpy.verif
+        outputSpy.verifyTextFieldInputErrorWasNeverCalled()
+        
+        // TODO: Verificar se o request foi chamado uma única vez
     }
     
     private func givenStringOfSize(_ count: Int) -> String {
-        var dummy: String = ""
-        for _ in 0..<count {
-            dummy.append("a")
-        }
-        return dummy
+        return (0..<count)
+            .map { _ in "a" }
+            .joined()
     }
 }
 
