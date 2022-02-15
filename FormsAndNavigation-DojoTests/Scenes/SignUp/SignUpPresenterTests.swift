@@ -43,6 +43,7 @@ final class SignUpPresenterTests: XCTestCase {
         sut.userDidRequestToSignUp(user: .make())
         
         outputSpy.verifyTextFieldInputErrorWasCalledOnce(error: .name)
+        thenAssertAnalyticsWasNeverCalled()
     }
     
     func test_userDidRequestToSignUp_whenUserDataFirstNameIsLessThan10_shouldCallOutputTextFieldErrorWithNameFieldType() {
@@ -50,6 +51,7 @@ final class SignUpPresenterTests: XCTestCase {
         sut.userDidRequestToSignUp(user: .make(firstName: dummyFirstName))
         
         outputSpy.verifyTextFieldInputErrorWasCalledOnce(error: .name)
+        thenAssertAnalyticsWasNeverCalled()
     }
     
     func test_userDidRequestToSignUp_whenUserDataFirstNameIsGreatherThan30_shouldCallOutputTextFieldErrorWithNameFieldType() {
@@ -57,6 +59,14 @@ final class SignUpPresenterTests: XCTestCase {
         sut.userDidRequestToSignUp(user: .make(firstName: dummyFirstName))
         
         outputSpy.verifyTextFieldInputErrorWasCalledOnce(error: .name)
+        thenAssertAnalyticsWasNeverCalled()
+    }
+    
+    func test_userDidRequestToSignUp_whenUserDataFirstNameHasTheRightSize_shouldNotCallOutputTextFieldErrorWithNameFieldType() {
+        let dummyFirstName: String = givenStringOfSize(10)
+        sut.userDidRequestToSignUp(user: .make(firstName: dummyFirstName))
+        
+        outputSpy.verif
     }
     
     private func givenStringOfSize(_ count: Int) -> String {

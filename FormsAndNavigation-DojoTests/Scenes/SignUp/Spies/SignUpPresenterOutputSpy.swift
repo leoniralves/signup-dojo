@@ -25,10 +25,36 @@ final class SignUpPresenterOutputSpy: SignUpPresenterOutput {
         line: UInt = #line
     ) {
         guard textFieldInputErrorArgs.count == 1 else {
-            XCTFail("Method verifyTextFieldInputErrorWasCalledOnce expected once, but was called more than once")
+            XCTFail("Method textFieldInputError expected once, but was called \(textFieldInputErrorArgs.count)")
             return
         }
         
+        XCTAssertEqual(
+            error,
+            textFieldInputErrorArgs.first,
+            file: file,
+            line: line
+        )
+        
+        XCTAssertEqual(
+            error.rawValue,
+            textFieldInputErrorArgs.first?.rawValue,
+            file: file,
+            line: line
+        )
+    }
+    
+    func verifyTextFieldInputErrorWasNeverCalled(
+        error: FieldTypeError,
+        file: StaticString = #file,
+        line: UInt = #line
+    ) {
+        guard textFieldInputErrorArgs.count == 0 else {
+            XCTFail("Method textFieldInputError expected 0, but was called \(textFieldInputErrorArgs.count)")
+            return
+        }
+        
+        // TODO: Finish this neverCalled assertions
         XCTAssertEqual(
             error,
             textFieldInputErrorArgs.first,
