@@ -76,11 +76,11 @@ final class SignUpPresenterTests: XCTestCase {
         
         // TODO: Verificar se o request foi chamado uma única vez
         networkerSpy.verifyRequestWasCalledOnce(arg: .signUp(
-            firstName: "",
+            firstName: "aaaaaaaaaa",
             lastName: nil,
             age: nil,
-            email: "",
-            password: ""
+            email: "Xablau",
+            password: "Xablau"
         ))
     }
     

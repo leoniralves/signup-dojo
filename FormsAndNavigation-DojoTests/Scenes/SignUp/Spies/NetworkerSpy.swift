@@ -28,12 +28,13 @@ final class NetworkerSpy: NetworkerProtocol {
 // MARK: - Verifier Methods
 extension NetworkerSpy {
     func verifyRequestWasCalledOnce(
-        arg: Networker.Target,
         file: StaticString = #file,
         line: UInt = #line
-    ) {
-        guard verifyRequestArgs.count > 0 else {
-            return
+    ) -> Bool {
+ 
+        guard verifyRequestArgs.count > 0 else  {
+            XCTFail(file: file, line: line)
+            return false
         }
         
         XCTAssertEqual(
@@ -42,7 +43,19 @@ extension NetworkerSpy {
             file: file,
             line: line
         )
-        
+
+        return true
+    }
+
+    func verifyRequestArg(
+        arg: Networker.Target,
+        file: StaticString = #file,
+        line: UInt = #line
+    ) {
+        guard verifyRequestWasCalledOnce() else {
+            return
+        }
+
         XCTAssertEqual(
             verifyRequestArgs.first,
             arg,
