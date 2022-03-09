@@ -18,7 +18,7 @@ class Networker: NetworkerProtocol {
         case GET
     }
     
-    enum Target {
+    enum Target: Equatable {
         case signUp(
             firstName: String,
             lastName: String?,
