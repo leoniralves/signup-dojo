@@ -75,6 +75,13 @@ final class SignUpPresenterTests: XCTestCase {
         outputSpy.verifyTextFieldInputErrorWasNeverCalled()
         
         // TODO: Verificar se o request foi chamado uma única vez
+        networkerSpy.verifyRequestWasCalledOnce(arg: .signUp(
+            firstName: "",
+            lastName: nil,
+            age: nil,
+            email: "",
+            password: ""
+        ))
     }
     
     private func givenStringOfSize(_ count: Int) -> String {
