@@ -36,13 +36,6 @@ extension NetworkerSpy {
             XCTFail(file: file, line: line)
             return false
         }
-        
-        XCTAssertEqual(
-            verifyRequestArgs.count,
-            1,
-            file: file,
-            line: line
-        )
 
         return true
     }

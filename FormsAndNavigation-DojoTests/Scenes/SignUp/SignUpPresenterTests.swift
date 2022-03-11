@@ -68,20 +68,18 @@ final class SignUpPresenterTests: XCTestCase {
         thenAssertAnalyticsWasNeverCalled()
     }
     
-    func test_userDidRequestToSignUp_whenUserDataFirstNameIsGreatherThanOrEqual10AndLessThanOrEqual30_shouldNotCallOutputTextFieldErrorWithNameFieldType() {
+    func test_userDidRequestToSignUp_whenUserDataFirstNameIsGreatherThanOrEqual10AndLessThanOrEqual30_shouldNotCallOutputTextFieldErrorWithNameFieldType_() {
         let dummyFirstName: String = givenStringOfSize(10)
         sut.userDidRequestToSignUp(user: .make(firstName: dummyFirstName))
         
         outputSpy.verifyTextFieldInputErrorWasNeverCalled()
+    }
+    
+    func test_() {
+        let dummyModel: SignUpModel = .make(firstName: nil, lastName: nil, age: nil, email: nil, password: nil)
+        sut.userDidRequestToSignUp(user: dummyModel)
         
-        // TODO: Verificar se o request foi chamado uma única vez
-        networkerSpy.verifyRequestWasCalledOnce(arg: .signUp(
-            firstName: "aaaaaaaaaa",
-            lastName: nil,
-            age: nil,
-            email: "Xablau",
-            password: "Xablau"
-        ))
+        networkerSpy.verifyRequestArg(arg: .signUp(firstName: "aaaaaaaaaa", lastName: nil, age: nil, email: "dummy", password: "dummy"))
     }
     
     private func givenStringOfSize(_ count: Int) -> String {
