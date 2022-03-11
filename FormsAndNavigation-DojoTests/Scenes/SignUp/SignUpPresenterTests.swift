@@ -13,7 +13,7 @@ final class SignUpPresenterTests: XCTestCase {
     private let analyticsSpy: AnalyticsSpy = .init()
     private let networkerSpy: NetworkerSpy = .init()
     private let outputSpy: SignUpPresenterOutputSpy = .init()
-
+    
     // MARK: - Computed Properties
     private lazy var sut: SignUpPresenter = {
         let presenter: SignUpPresenter = .init(
@@ -32,7 +32,7 @@ final class SignUpPresenterTests: XCTestCase {
         
         thenAssertAnalyticsWasNeverCalled()
     }
-
+    
     func test_userDidRequestToSignUp_whenGetFirstNameEmailPasswordNotEmpty_shouldNotCallAnalyticsSend() {
         sut.userDidRequestToSignUp(user: .make())
         
@@ -75,11 +75,27 @@ final class SignUpPresenterTests: XCTestCase {
         outputSpy.verifyTextFieldInputErrorWasNeverCalled()
     }
     
-    func test_() {
-        let dummyModel: SignUpModel = .make(firstName: nil, lastName: nil, age: nil, email: nil, password: nil)
+    func test_userDidRequestToSignUp_whenUserDataFirstNameIsGreatherThanOrEqual10AndLessThanOrEqual30_() {
+        let dummyFirstName: String = givenStringOfSize(10)
+        let dummyModel: SignUpModel = .make(
+            firstName: dummyFirstName,
+            lastName: nil,
+            age: nil,
+            email: "dummy",
+            password: "dummyPassword"
+        )
+        
         sut.userDidRequestToSignUp(user: dummyModel)
         
-        networkerSpy.verifyRequestArg(arg: .signUp(firstName: "aaaaaaaaaa", lastName: nil, age: nil, email: "dummy", password: "dummy"))
+        networkerSpy.verifyRequestArg(
+            arg: .signUp(
+                firstName: dummyModel.firstName!,
+                lastName: dummyModel.lastName,
+                age: dummyModel.age,
+                email: dummyModel.email!,
+                password: dummyModel.password!
+            )
+        )
     }
     
     private func givenStringOfSize(_ count: Int) -> String {
@@ -109,7 +125,7 @@ extension SignUpPresenterTests {
             line: line
         )
     }
-
+    
     func thenAssertAnalyticsWasNeverCalled(
         file: StaticString = #file,
         line: UInt = #line

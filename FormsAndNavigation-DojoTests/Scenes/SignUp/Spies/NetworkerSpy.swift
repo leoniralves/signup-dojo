@@ -32,8 +32,12 @@ extension NetworkerSpy {
         line: UInt = #line
     ) -> Bool {
  
-        guard verifyRequestArgs.count > 0 else  {
-            XCTFail(file: file, line: line)
+        guard verifyRequestArgs.count == 1 else  {
+            XCTFail(
+                "Wanted 1 but was called \(verifyRequestArgs.count) times. Networker.request() method with args: \(verifyRequestArgs.description)",
+                file: file,
+                line: line
+            )
             return false
         }
 
@@ -45,7 +49,7 @@ extension NetworkerSpy {
         file: StaticString = #file,
         line: UInt = #line
     ) {
-        guard verifyRequestWasCalledOnce() else {
+        guard verifyRequestWasCalledOnce(file: file, line: line) else {
             return
         }
 
