@@ -24,15 +24,18 @@ final class SignUpPresenter: SignUpPresenterInput {
     // MARK: - Properties
     private var analytics: AnalyticsProtocol
     private let networker: NetworkerProtocol
+    private let validator: SignUpValidatorProtocol
     private weak var output: SignUpPresenterOutput?
     
     // MARK: - Initializer Methods
     init(
         networker: NetworkerProtocol = Networker(),
-        analytics: AnalyticsProtocol = Analytics.shared
+        analytics: AnalyticsProtocol = Analytics.shared,
+        validator: SignUpValidatorProtocol = SignUpValidator()
     ) {
         self.networker = networker
         self.analytics = analytics
+        self.validator = validator
     }
 
     func setOutput(output: SignUpPresenterOutput?) {
