@@ -18,6 +18,8 @@ protocol SignUpPresenterOutput: AnyObject {
 
 enum FieldTypeError: String {
     case name = "O nome deve ter entre 10 e 30 caracteres"
+    case email = "email regras"
+    case password = "password regras"
 }
 
 final class SignUpPresenter: SignUpPresenterInput {
@@ -44,12 +46,27 @@ final class SignUpPresenter: SignUpPresenterInput {
     
     // MARK: - Public and Internal Methods
     func userDidRequestToSignUp(user: SignUpModel) {
-        guard verifyUserData(user: user) else {
+        let nameVerified: (valid: Bool, value: String) = validator.getValidFirstName(name: user.firstName)
+        let emailVerified: (valid: Bool, value: String) = validator.getValidEmail(email: user.email)
+        let passwordVerified: (valid: Bool, value: String) = validator.getValidPassword(password: user.password)
+        
+        guard nameVerified.valid else {
+            output?.textFieldInputError(for: .name)
+            return
+        }
+
+        guard emailVerified.valid else {
+            output?.textFieldInputError(for: .email)
+            return
+        }
+
+        guard passwordVerified.valid else {
+            output?.textFieldInputError(for: .password)
             return
         }
         
         networker.request(target: .signUp(
-            firstName: user.firstName ?? "Xablau",
+            firstName: nameVerified.value,
             lastName: user.lastName,
             age: user.age,
             email: user.email ?? "Xablau",
@@ -67,13 +84,10 @@ final class SignUpPresenter: SignUpPresenterInput {
         return true
     }
     
-    private func verifyUserFirstName(name: String?) -> (valid: Bool, value: String) {
-        let isValid = validator.getValidFirstName(name: name)
-        
-        guard isValid.valid else {
+    private func verifyUserFirstName(isValid: Bool, type: FieldTypeError) {
+        guard isValid else {
             //TODO: Criar funções de output de erro ✅ e testar cenário
-            output?.textFieldInputError(for: .name)
-            return isValid
+            output?.textFieldInputError(for: type)
         }
 
         return isValid
