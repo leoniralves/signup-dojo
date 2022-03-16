@@ -67,14 +67,16 @@ final class SignUpPresenter: SignUpPresenterInput {
         return true
     }
     
-    private func verifyUserFirstName(name: String?) -> Bool {
-        guard let firstName = name, firstName.count >= 10 && firstName.count <= 30  else {
+    private func verifyUserFirstName(name: String?) -> (valid: Bool, value: String) {
+        let isValid = validator.getValidFirstName(name: name)
+        
+        guard isValid.valid else {
             //TODO: Criar funções de output de erro ✅ e testar cenário
             output?.textFieldInputError(for: .name)
-            return false
+            return isValid
         }
 
-        return true
+        return isValid
     }
     
     
