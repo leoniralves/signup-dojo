@@ -50,49 +50,53 @@ final class SignUpPresenter: SignUpPresenterInput {
         let emailVerified: (valid: Bool, value: String) = validator.getValidEmail(email: user.email)
         let passwordVerified: (valid: Bool, value: String) = validator.getValidPassword(password: user.password)
         
-        guard nameVerified.valid else {
-            output?.textFieldInputError(for: .name)
-            return
-        }
-
-        guard emailVerified.valid else {
-            output?.textFieldInputError(for: .email)
-            return
-        }
-
-        guard passwordVerified.valid else {
-            output?.textFieldInputError(for: .password)
+        guard isValidUserData(
+            nameValid: nameVerified.valid,
+            emailValid: emailVerified.valid,
+            passwordValid: passwordVerified.valid
+        ) else {
             return
         }
         
-        networker.request(target: .signUp(
+        requestSignUp(
             firstName: nameVerified.value,
             lastName: user.lastName,
             age: user.age,
-            email: user.email ?? "Xablau",
-            password: user.password ?? "Xablau"
-        )) { result in
-            trackNetworkRequest(result: result)
-        }
+            email: emailVerified.value,
+            password: passwordVerified.value
+        )
     }
     
-    private func verifyUserData(user: SignUpModel) -> Bool {
-        guard verifyUserFirstName(name: user.firstName) else {
+    private func isValidUserData(nameValid: Bool, emailValid: Bool, passwordValid: Bool) -> Bool {
+        guard nameValid else {
+            output?.textFieldInputError(for: .name)
+            return false
+        }
+
+        guard emailValid else {
+            output?.textFieldInputError(for: .email)
+            return false
+        }
+
+        guard passwordValid else {
+            output?.textFieldInputError(for: .password)
             return false
         }
         
         return true
     }
     
-    private func verifyUserFirstName(isValid: Bool, type: FieldTypeError) {
-        guard isValid else {
-            //TODO: Criar funções de output de erro ✅ e testar cenário
-            output?.textFieldInputError(for: type)
+    private func requestSignUp(firstName: String, lastName: String?, age: String?, email: String, password: String) {
+        networker.request(target: .signUp(
+            firstName: firstName,
+            lastName: lastName,
+            age: age,
+            email: email,
+            password: password
+        )) { result in
+            trackNetworkRequest(result: result)
         }
-
-        return isValid
     }
-    
     
     private func trackNetworkRequest(result: Result<Bool, Error>) {
         switch result {
