@@ -13,12 +13,14 @@ final class SignUpPresenterTests: XCTestCase {
     private let analyticsSpy: AnalyticsSpy = .init()
     private let networkerSpy: NetworkerSpy = .init()
     private let outputSpy: SignUpPresenterOutputSpy = .init()
+    private let signUpValidatorSpy: SignUpValidatorSpy = .init()
     
     // MARK: - Computed Properties
     private lazy var sut: SignUpPresenter = {
         let presenter: SignUpPresenter = .init(
             networker: networkerSpy,
-            analytics: analyticsSpy
+            analytics: analyticsSpy,
+            validator: signUpValidatorSpy
         )
         
         presenter.setOutput(output: outputSpy)
@@ -69,9 +71,14 @@ final class SignUpPresenterTests: XCTestCase {
     }
     
     func test_userDidRequestToSignUp_whenUserDataFirstNameIsGreatherThanOrEqual10AndLessThanOrEqual30_shouldNotCallOutputTextFieldErrorWithNameFieldType_() {
-        let dummyFirstName: String = givenStringOfSize(10)
+        let dummyFirstName: String = "dummyFirstName"
+        signUpValidatorSpy.getValidFirstNameToBeReturned = (true, dummyFirstName)
+        signUpValidatorSpy.getValidEmailToBeReturned = (true, "")
+        signUpValidatorSpy.getValidPasswordToBeReturned = (true, "")
+        
         sut.userDidRequestToSignUp(user: .make(firstName: dummyFirstName))
         
+        signUpValidatorSpy.verifyGetValidFirstNameWasCalledOnce(argument: dummyFirstName)
         outputSpy.verifyTextFieldInputErrorWasNeverCalled()
     }
     
