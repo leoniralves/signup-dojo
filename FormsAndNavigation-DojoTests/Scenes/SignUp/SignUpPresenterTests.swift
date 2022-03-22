@@ -72,11 +72,10 @@ final class SignUpPresenterTests: XCTestCase {
     
     func test_userDidRequestToSignUp_whenUserDataFirstNameIsGreatherThanOrEqual10AndLessThanOrEqual30_shouldNotCallOutputTextFieldErrorWithNameFieldType_() {
         let dummyFirstName: String = "dummyFirstName"
-        signUpValidatorSpy.getValidFirstNameToBeReturned = (true, dummyFirstName)
-        signUpValidatorSpy.getValidEmailToBeReturned = (true, "")
-        signUpValidatorSpy.getValidPasswordToBeReturned = (true, "")
+        let dummyEmail: String = "dummyEmail"
+        let dummyPassword: String = "dummyPassword"
         
-        sut.userDidRequestToSignUp(user: .make(firstName: dummyFirstName))
+        sut.userDidRequestToSignUp(user: .make(firstName: dummyFirstName, email: dummyEmail, password: dummyPassword))
         
         signUpValidatorSpy.verifyGetValidFirstNameWasCalledOnce(argument: dummyFirstName)
         outputSpy.verifyTextFieldInputErrorWasNeverCalled()

@@ -14,27 +14,25 @@ final class SignUpValidatorSpy: SignUpValidatorProtocol {
     private var verifyGetValidEmail: [String?] = []
     private var verifyGetValidPassword: [String?] = []
     
-    var getValidFirstNameToBeReturned: (valid: Bool, value: String)?
-    var getValidEmailToBeReturned: (valid: Bool, value: String)?
-    var getValidPasswordToBeReturned: (valid: Bool, value: String)?
+    private let validator: SignUpValidator = .init()
     
     // MARK: - SignUpValidatorProtocol Methods
     func getValidFirstName(name: String?) -> (valid: Bool, value: String) {
         verifyGetValidFirstName.append(name)
         
-        return getValidFirstNameToBeReturned!
+        return validator.getValidFirstName(name: name)
     }
     
     func getValidEmail(email: String?) -> (valid: Bool, value: String) {
         verifyGetValidEmail.append(email)
         
-        return getValidEmailToBeReturned!
+        return validator.getValidEmail(email: email)
     }
     
     func getValidPassword(password: String?) -> (valid: Bool, value: String) {
         verifyGetValidPassword.append(password)
         
-        return getValidPasswordToBeReturned!
+        return validator.getValidPassword(password: password)
     }
 }
 
