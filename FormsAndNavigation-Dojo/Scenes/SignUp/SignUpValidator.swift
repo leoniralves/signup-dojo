@@ -27,9 +27,10 @@ class SignUpValidator: SignUpValidatorProtocol {
     
     func getValidEmail(email: String?) -> (valid: Bool, value: String) {
         let email: String = email ?? ""
+        
+        // Testar regex com este formato: ^[0-9?A-z0-9?]+(\.)?[0-9?A-z0-9?]+@[A-z]+\.[A-z]{3}.?[A-z]{0,3}$
         let emailRegex: String = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}"
         let predicate: NSPredicate = NSPredicate(format: "SELF MATCHES %@", emailRegex)
-        
         let isValid: Bool = predicate.evaluate(with: email)
 
         return (isValid, email)
