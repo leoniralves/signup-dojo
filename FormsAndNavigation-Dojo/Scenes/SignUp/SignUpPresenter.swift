@@ -68,22 +68,24 @@ final class SignUpPresenter: SignUpPresenterInput {
     }
     
     private func isValidUserData(nameValid: Bool, emailValid: Bool, passwordValid: Bool) -> Bool {
-        guard nameValid else {
+        var outputsError: [Bool] = []
+
+        if !nameValid {
             output?.textFieldInputError(for: .name)
-            return false
+            outputsError.append(false)
         }
 
-        guard emailValid else {
+        if !emailValid {
             output?.textFieldInputError(for: .email)
-            return false
+            outputsError.append(false)
         }
 
-        guard passwordValid else {
+        if !passwordValid {
             output?.textFieldInputError(for: .password)
-            return false
+            outputsError.append(false)
         }
         
-        return true
+        return outputsError.count == 0
     }
     
     private func requestSignUp(firstName: String, lastName: String?, age: String?, email: String, password: String) {

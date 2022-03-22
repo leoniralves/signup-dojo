@@ -5,6 +5,8 @@
 //  Created by Gabriel Pereira on 11/03/22.
 //
 
+import Foundation
+
 protocol SignUpValidatorProtocol {
     func getValidFirstName(name: String?) -> (valid: Bool, value: String)
     func getValidEmail(email: String?) -> (valid: Bool, value: String)
@@ -24,7 +26,13 @@ class SignUpValidator: SignUpValidatorProtocol {
     }
     
     func getValidEmail(email: String?) -> (valid: Bool, value: String) {
-        return (false, "")
+        let email: String = email ?? ""
+        let emailRegex: String = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}"
+        let predicate: NSPredicate = NSPredicate(format: "SELF MATCHES %@", emailRegex)
+        
+        let isValid: Bool = predicate.evaluate(with: email)
+
+        return (isValid, email)
     }
     
     func getValidPassword(password: String?) -> (valid: Bool, value: String) {
