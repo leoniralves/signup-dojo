@@ -26,7 +26,7 @@ final class SignUpPresenterOutputSpy: SignUpPresenterOutput {
     ) {
         guard textFieldInputErrorArgs.count == 1 else {
             XCTFail(
-                "Method textFieldInputError expected once, but was called \(textFieldInputErrorArgs.count)",
+                "Method textFieldInputError expected once, but was called \(textFieldInputErrorArgs.count) with args \(textFieldInputErrorArgs)",
                 file: file,
                 line: line
             )

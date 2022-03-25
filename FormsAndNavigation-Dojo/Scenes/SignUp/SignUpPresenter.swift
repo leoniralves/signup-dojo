@@ -50,13 +50,13 @@ final class SignUpPresenter: SignUpPresenterInput {
         let emailVerified: (valid: Bool, value: String) = validator.getValidEmail(email: user.email)
         let passwordVerified: (valid: Bool, value: String) = validator.getValidPassword(password: user.password)
         
-        guard isValidUserData(
+        let errors = isValidUserData(
             nameValid: nameVerified.valid,
             emailValid: emailVerified.valid,
             passwordValid: passwordVerified.valid
-        ) else {
-            return
-        }
+        )
+        
+        output?.textFieldInputError(for: .password)
         
         requestSignUp(
             firstName: nameVerified.value,
@@ -67,25 +67,22 @@ final class SignUpPresenter: SignUpPresenterInput {
         )
     }
     
-    private func isValidUserData(nameValid: Bool, emailValid: Bool, passwordValid: Bool) -> Bool {
-        var outputsError: [Bool] = []
+    private func isValidUserData(nameValid: Bool, emailValid: Bool, passwordValid: Bool) -> [FieldTypeError] {
+        var outputsError: [FieldTypeError] = []
 
         if !nameValid {
-            output?.textFieldInputError(for: .name)
-            outputsError.append(false)
+            outputsError.append(.name)
         }
 
         if !emailValid {
-            output?.textFieldInputError(for: .email)
-            outputsError.append(false)
+            outputsError.append(.email)
         }
 
         if !passwordValid {
-            output?.textFieldInputError(for: .password)
-            outputsError.append(false)
+            outputsError.append(.password)
         }
         
-        return outputsError.count == 0
+        return outputsError
     }
     
     private func requestSignUp(firstName: String, lastName: String?, age: String?, email: String, password: String) {
