@@ -11,16 +11,16 @@ import XCTest
 
 final class SignUpPresenterOutputSpy: SignUpPresenterOutput {
     // MARK: - Properties
-    var textFieldInputErrorArgs: [FieldTypeError] = []
+    var textFieldInputErrorArgs: [[FieldTypeError]] = []
     
     // MARK: - SignUpPresenterOutput Methods
-    func textFieldInputError(for fieldType: FieldTypeError) {
-        textFieldInputErrorArgs.append(fieldType)
+    func textFieldInputError(for fieldTypes: [FieldTypeError]) {
+        textFieldInputErrorArgs.append(fieldTypes)
     }
     
     // TODO: - Começar por aqui escrevendo os métodos de verificação de chamadas do método `textFieldInputError`
     func verifyTextFieldInputErrorWasCalledOnce(
-        error: FieldTypeError,
+        errors: [FieldTypeError],
         file: StaticString = #file,
         line: UInt = #line
     ) {
@@ -34,14 +34,14 @@ final class SignUpPresenterOutputSpy: SignUpPresenterOutput {
         }
         
         XCTAssertEqual(
-            error,
+            errors,
             textFieldInputErrorArgs.first,
             file: file,
             line: line
         )
         
         XCTAssertEqual(
-            error.rawValue,
+            errors.rawValue,
             textFieldInputErrorArgs.first?.rawValue,
             file: file,
             line: line

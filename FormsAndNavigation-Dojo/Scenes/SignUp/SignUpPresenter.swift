@@ -13,7 +13,7 @@ protocol SignUpPresenterInput {
 }
 
 protocol SignUpPresenterOutput: AnyObject {
-    func textFieldInputError(for fieldType: FieldTypeError)
+    func textFieldInputError(for fieldTypes: [FieldTypeError])
 }
 
 enum FieldTypeError: String {
@@ -50,13 +50,15 @@ final class SignUpPresenter: SignUpPresenterInput {
         let emailVerified: (valid: Bool, value: String) = validator.getValidEmail(email: user.email)
         let passwordVerified: (valid: Bool, value: String) = validator.getValidPassword(password: user.password)
         
-        let errors = isValidUserData(
+        let errors = getFieldTypeErrors(
             nameValid: nameVerified.valid,
             emailValid: emailVerified.valid,
             passwordValid: passwordVerified.valid
         )
         
-        output?.textFieldInputError(for: .password)
+        guard isValidUserData(errors) else {
+            return
+        }
         
         requestSignUp(
             firstName: nameVerified.value,
@@ -67,7 +69,7 @@ final class SignUpPresenter: SignUpPresenterInput {
         )
     }
     
-    private func isValidUserData(nameValid: Bool, emailValid: Bool, passwordValid: Bool) -> [FieldTypeError] {
+    private func getFieldTypeErrors(nameValid: Bool, emailValid: Bool, passwordValid: Bool) -> [FieldTypeError] {
         var outputsError: [FieldTypeError] = []
 
         if !nameValid {
@@ -83,6 +85,15 @@ final class SignUpPresenter: SignUpPresenterInput {
         }
         
         return outputsError
+    }
+
+    private func isValidUserData(_ fieldTypeErrors: [FieldTypeError]) -> Bool {
+        if !fieldTypeErrors.isEmpty {
+            output?.textFieldInputError(for: fieldTypeErrors)
+            return false
+        }
+
+        return true
     }
     
     private func requestSignUp(firstName: String, lastName: String?, age: String?, email: String, password: String) {
