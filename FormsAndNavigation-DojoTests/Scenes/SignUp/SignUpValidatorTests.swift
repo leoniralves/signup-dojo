@@ -30,7 +30,14 @@ final class SignUpValidatorTests: XCTestCase {
     
     func test_getValidEmail_whenEmailHasInvalidCharacters_shouldReturnFalse() {
         // TODO - Começar o DOJO de amanhã aqui
+        let dummyValue: String = "dummy&@dummy.com"
+        let assertObject = sut.getValidEmail(email: dummyValue)
+        
+        XCTAssertFalse(assertObject.valid)
+        XCTAssertEqual(assertObject.value, dummyValue)
     }
+    
+    
     
     func test_getValidEmail_whenEmailParameterIsValid_shouldReturnTrue() {
         let dummyValue: String = "dummy@dummy.com"
