@@ -59,30 +59,30 @@ final class SignUpPresenter: SignUpPresenterInput {
     }
     
     // MARK: - Public and Internal Methods
-    func userDidRequestToSignUp(user: SignUpModel) {
-        // Validar dados
-        // Se deu errado, dispara delegate
-        // Se deu certo, faz request
-        // Callback
-    }
+//    func userDidRequestToSignUp(user: SignUpModel) {
+//        // Validar dados
+//        // Se deu errado, dispara delegate
+//        // Se deu certo, faz request
+//        // Callback
+//    }
     
     func userDidRequestToSignUp(user: SignUpModel) {
         let errors = getFieldTypeErrors(user: user)
         
-        guard isValidUserData(errors) else {
+        guard isValidUserData(errors.1) else {
             return
         }
         
-        requestSignUp(
-            firstName: nameVerified.value,
-            lastName: user.lastName,
-            age: user.age,
-            email: emailVerified.value,
-            password: passwordVerified.value
-        )
+//        requestSignUp(
+//            firstName: nameVerified.value,
+//            lastName: user.lastName,
+//            age: user.age,
+//            email: emailVerified.value,
+//            password: passwordVerified.value
+//        )
     }
     
-    private func getFieldTypeErrors(user: SignUpModel) -> (UserDataDTO?, FieldTypeError?) {
+    private func getFieldTypeErrors(user: SignUpModel) -> (UserDataDTO?, [FieldTypeError]?) {
         let nameVerified: (valid: Bool, value: String) = validator.getValidFirstName(name: user.firstName)
         let emailVerified: (valid: Bool, value: String) = validator.getValidEmail(email: user.email)
         let passwordVerified: (valid: Bool, value: String) = validator.getValidPassword(password: user.password)
@@ -101,7 +101,7 @@ final class SignUpPresenter: SignUpPresenterInput {
             outputsError.append(.password)
         }
         
-        return outputsError
+        return (adapter(user: <#T##SignUpModel#>), outputsError)
     }
 
     private func isValidUserData(_ fieldTypeErrors: [FieldTypeError]) -> Bool {
@@ -113,8 +113,14 @@ final class SignUpPresenter: SignUpPresenterInput {
         return true
     }
     
-    func adapter(SignUpModel) -> UserDataDTO {
-        
+    func adapter(user: SignUpModel) -> UserDataDTO {
+        return .init(
+            firstName: nameVerified.value,
+            lastName: user.lastName,
+            age: user.age,
+            email: emailVerified.value,
+            password: passwordVerified.value
+        )
     }
     
     private func requestSignUp(firstName: String, lastName: String?, age: String?, email: String, password: String) {
