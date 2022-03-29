@@ -28,14 +28,6 @@ enum FieldTypeError: Error {
     case password
 }
 
-struct UserDataDTO {
-    let firstName: String
-    let lastName: String
-    let age: String
-    let email: String
-    let password: String
-}
-
 final class SignUpPresenter: SignUpPresenterInput {
     // MARK: - Properties
     private var analytics: AnalyticsProtocol
@@ -67,7 +59,7 @@ final class SignUpPresenter: SignUpPresenterInput {
 //    }
     
     func userDidRequestToSignUp(user: SignUpModel) {
-        let errors = getFieldTypeErrors(user: user)
+        let errors = handleUserData(user: user)
         
         guard isValidUserData(errors.1) else {
             return
@@ -82,7 +74,7 @@ final class SignUpPresenter: SignUpPresenterInput {
 //        )
     }
     
-    private func getFieldTypeErrors(user: SignUpModel) -> (UserDataDTO?, [FieldTypeError]?) {
+    private func handleUserData(user: SignUpModel) -> (user: SignUpModel, errors: [FieldTypeError]?) {
         let nameVerified: (valid: Bool, value: String) = validator.getValidFirstName(name: user.firstName)
         let emailVerified: (valid: Bool, value: String) = validator.getValidEmail(email: user.email)
         let passwordVerified: (valid: Bool, value: String) = validator.getValidPassword(password: user.password)
@@ -123,7 +115,7 @@ final class SignUpPresenter: SignUpPresenterInput {
         )
     }
     
-    private func requestSignUp(firstName: String, lastName: String?, age: String?, email: String, password: String) {
+    private func requestSignUp(user: SignUpModel) {
         networker.request(target: .signUp(
             firstName: firstName,
             lastName: lastName,
