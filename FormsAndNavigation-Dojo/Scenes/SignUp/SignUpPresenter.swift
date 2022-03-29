@@ -16,10 +16,24 @@ protocol SignUpPresenterOutput: AnyObject {
     func textFieldInputError(for fieldTypes: [FieldTypeError])
 }
 
-enum FieldTypeError: String {
-    case name = "O nome deve ter entre 10 e 30 caracteres"
-    case email = "email regras"
-    case password = "password regras"
+//enum FieldTypeError: String {
+//    case name = "O nome deve ter entre 10 e 30 caracteres"
+//    case email = "email regras"
+//    case password = "password regras"
+//}
+
+enum FieldTypeError: Error {
+    case name
+    case email
+    case password
+}
+
+struct UserDataDTO {
+    let firstName: String
+    let lastName: String
+    let age: String
+    let email: String
+    let password: String
 }
 
 final class SignUpPresenter: SignUpPresenterInput {
@@ -46,15 +60,14 @@ final class SignUpPresenter: SignUpPresenterInput {
     
     // MARK: - Public and Internal Methods
     func userDidRequestToSignUp(user: SignUpModel) {
-        let nameVerified: (valid: Bool, value: String) = validator.getValidFirstName(name: user.firstName)
-        let emailVerified: (valid: Bool, value: String) = validator.getValidEmail(email: user.email)
-        let passwordVerified: (valid: Bool, value: String) = validator.getValidPassword(password: user.password)
-        
-        let errors = getFieldTypeErrors(
-            nameValid: nameVerified.valid,
-            emailValid: emailVerified.valid,
-            passwordValid: passwordVerified.valid
-        )
+        // Validar dados
+        // Se deu errado, dispara delegate
+        // Se deu certo, faz request
+        // Callback
+    }
+    
+    func userDidRequestToSignUp(user: SignUpModel) {
+        let errors = getFieldTypeErrors(user: user)
         
         guard isValidUserData(errors) else {
             return
@@ -69,18 +82,22 @@ final class SignUpPresenter: SignUpPresenterInput {
         )
     }
     
-    private func getFieldTypeErrors(nameValid: Bool, emailValid: Bool, passwordValid: Bool) -> [FieldTypeError] {
+    private func getFieldTypeErrors(user: SignUpModel) -> (UserDataDTO?, FieldTypeError?) {
+        let nameVerified: (valid: Bool, value: String) = validator.getValidFirstName(name: user.firstName)
+        let emailVerified: (valid: Bool, value: String) = validator.getValidEmail(email: user.email)
+        let passwordVerified: (valid: Bool, value: String) = validator.getValidPassword(password: user.password)
+        
         var outputsError: [FieldTypeError] = []
 
-        if !nameValid {
+        if !nameVerified.valid {
             outputsError.append(.name)
         }
 
-        if !emailValid {
+        if !emailVerified.valid {
             outputsError.append(.email)
         }
 
-        if !passwordValid {
+        if !passwordVerified.valid {
             outputsError.append(.password)
         }
         
@@ -94,6 +111,10 @@ final class SignUpPresenter: SignUpPresenterInput {
         }
 
         return true
+    }
+    
+    func adapter(SignUpModel) -> UserDataDTO {
+        
     }
     
     private func requestSignUp(firstName: String, lastName: String?, age: String?, email: String, password: String) {
