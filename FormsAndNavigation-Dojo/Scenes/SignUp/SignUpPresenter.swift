@@ -52,10 +52,8 @@ final class SignUpPresenter: SignUpPresenterInput {
         switch state {
         case .success(let user):
             requestSignUp(user: user)
-            break
         case .failure(let formError):
             output?.textFieldInputError(for: formError.errors)
-            break
         }
     }
     
@@ -95,12 +93,16 @@ final class SignUpPresenter: SignUpPresenterInput {
     }
     
     private func requestSignUp(user: SignUpModel) {
+        guard let firstName = user.firstName, let email = user.email, let password = user.password else {
+            return
+        }
+        
         networker.request(target: .signUp(
-            firstName: user.firstName ?? "",
+            firstName: firstName,
             lastName: user.lastName,
             age: user.age,
-            email: user.email ?? "",
-            password: user.password ?? ""
+            email: email,
+            password: password
         )) { result in
             trackNetworkRequest(result: result)
         }

@@ -41,8 +41,8 @@ final class SignUpPresenterOutputSpy: SignUpPresenterOutput {
         )
         
         XCTAssertEqual(
-            errors.rawValue,
-            textFieldInputErrorArgs.first?.rawValue,
+            errors,
+            textFieldInputErrorArgs.first,
             file: file,
             line: line
         )
