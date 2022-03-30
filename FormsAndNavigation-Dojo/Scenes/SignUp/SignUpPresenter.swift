@@ -16,18 +16,6 @@ protocol SignUpPresenterOutput: AnyObject {
     func textFieldInputError(for fieldTypes: [FieldTypeError])
 }
 
-//enum FieldTypeError: String {
-//    case name = "O nome deve ter entre 10 e 30 caracteres"
-//    case email = "email regras"
-//    case password = "password regras"
-//}
-
-enum FieldTypeError: Error {
-    case name
-    case email
-    case password
-}
-
 final class SignUpPresenter: SignUpPresenterInput {
     // MARK: - Properties
     private var analytics: AnalyticsProtocol
@@ -59,12 +47,12 @@ final class SignUpPresenter: SignUpPresenterInput {
 //    }
     
     func userDidRequestToSignUp(user: SignUpModel) {
-        let errors = handleUserData(user: user)
+        let state = handleUserData(user: user)
         
-        guard isValidUserData(errors.1) else {
-            return
+        switch state {
+        case .success(let user):
+        case .failure(let formError):
         }
-        
 //        requestSignUp(
 //            firstName: nameVerified.value,
 //            lastName: user.lastName,
@@ -74,26 +62,30 @@ final class SignUpPresenter: SignUpPresenterInput {
 //        )
     }
     
-    private func handleUserData(user: SignUpModel) -> (user: SignUpModel, errors: [FieldTypeError]?) {
+    private func handleUserData(user: SignUpModel) -> Result<SignUpModel, SignUpFormErrors> {
         let nameVerified: (valid: Bool, value: String) = validator.getValidFirstName(name: user.firstName)
         let emailVerified: (valid: Bool, value: String) = validator.getValidEmail(email: user.email)
         let passwordVerified: (valid: Bool, value: String) = validator.getValidPassword(password: user.password)
         
-        var outputsError: [FieldTypeError] = []
+        var formErrors: SignUpFormErrors = .init(errors: [])
 
         if !nameVerified.valid {
-            outputsError.append(.name)
+            formErrors.errors.append(.name)
         }
 
         if !emailVerified.valid {
-            outputsError.append(.email)
+            formErrors.errors.append(.email)
         }
 
         if !passwordVerified.valid {
-            outputsError.append(.password)
+            formErrors.errors.append(.password)
         }
         
-        return (adapter(user: <#T##SignUpModel#>), outputsError)
+        if formErrors.errors.isEmpty {
+            return .success(.init(firstName: nameVerified.value, lastName: user.lastName, age: user.age, email: emailVerified.value, password: passwordVerified.value))
+        } else {
+            return .failure(formErrors)
+        }
     }
 
     private func isValidUserData(_ fieldTypeErrors: [FieldTypeError]) -> Bool {
@@ -103,16 +95,6 @@ final class SignUpPresenter: SignUpPresenterInput {
         }
 
         return true
-    }
-    
-    func adapter(user: SignUpModel) -> UserDataDTO {
-        return .init(
-            firstName: nameVerified.value,
-            lastName: user.lastName,
-            age: user.age,
-            email: emailVerified.value,
-            password: passwordVerified.value
-        )
     }
     
     private func requestSignUp(user: SignUpModel) {
