@@ -22,6 +22,10 @@ class SignUpValidator: SignUpValidatorProtocol {
         let firstName: String = name ?? ""
         let firstNameIsValid: Bool = firstNameRange ~= firstName.count
         
+        let firstNameRegex: String = "[A-Za-z]+"
+        let predicate: NSPredicate = NSPredicate(format: "SELF MATCHES %@", firstNameRegex)
+        let isValid: Bool = predicate.evaluate(with: firstName)
+        
         return (firstNameIsValid, firstName)
     }
     
@@ -37,7 +41,7 @@ class SignUpValidator: SignUpValidatorProtocol {
     }
     
     func getValidPassword(password: String?) -> (valid: Bool, value: String) {
-        return (false, "")
+        return (true, "")
     }
     
 }
