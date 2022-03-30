@@ -33,33 +33,30 @@ final class SignUpPresenter: SignUpPresenterInput {
         self.analytics = analytics
         self.validator = validator
     }
-
+    
     func setOutput(output: SignUpPresenterOutput?) {
         self.output = output
     }
     
     // MARK: - Public and Internal Methods
-//    func userDidRequestToSignUp(user: SignUpModel) {
-//        // Validar dados
-//        // Se deu errado, dispara delegate
-//        // Se deu certo, faz request
-//        // Callback
-//    }
+    //    func userDidRequestToSignUp(user: SignUpModel) {
+    //        // Validar dados
+    //        // Se deu errado, dispara delegate
+    //        // Se deu certo, faz request
+    //        // Callback
+    //    }
     
     func userDidRequestToSignUp(user: SignUpModel) {
         let state = handleUserData(user: user)
-        
+
         switch state {
         case .success(let user):
+            requestSignUp(user: user)
+            break
         case .failure(let formError):
+            output?.textFieldInputError(for: formError.errors)
+            break
         }
-//        requestSignUp(
-//            firstName: nameVerified.value,
-//            lastName: user.lastName,
-//            age: user.age,
-//            email: emailVerified.value,
-//            password: passwordVerified.value
-//        )
     }
     
     private func handleUserData(user: SignUpModel) -> Result<SignUpModel, SignUpFormErrors> {
@@ -68,42 +65,42 @@ final class SignUpPresenter: SignUpPresenterInput {
         let passwordVerified: (valid: Bool, value: String) = validator.getValidPassword(password: user.password)
         
         var formErrors: SignUpFormErrors = .init(errors: [])
-
+        
         if !nameVerified.valid {
             formErrors.errors.append(.name)
         }
-
+        
         if !emailVerified.valid {
             formErrors.errors.append(.email)
         }
-
+        
         if !passwordVerified.valid {
             formErrors.errors.append(.password)
         }
         
         if formErrors.errors.isEmpty {
-            return .success(.init(firstName: nameVerified.value, lastName: user.lastName, age: user.age, email: emailVerified.value, password: passwordVerified.value))
+            return .success(user)
         } else {
             return .failure(formErrors)
         }
     }
-
+    
     private func isValidUserData(_ fieldTypeErrors: [FieldTypeError]) -> Bool {
         if !fieldTypeErrors.isEmpty {
             output?.textFieldInputError(for: fieldTypeErrors)
             return false
         }
-
+        
         return true
     }
     
     private func requestSignUp(user: SignUpModel) {
         networker.request(target: .signUp(
-            firstName: firstName,
-            lastName: lastName,
-            age: age,
-            email: email,
-            password: password
+            firstName: user.firstName ?? "",
+            lastName: user.lastName,
+            age: user.age,
+            email: user.email ?? "",
+            password: user.password ?? ""
         )) { result in
             trackNetworkRequest(result: result)
         }
