@@ -14,19 +14,15 @@ protocol SignUpValidatorProtocol {
 }
 
 class SignUpValidator: SignUpValidatorProtocol {
-    // MARK: - Properties
-    private let firstNameRange: ClosedRange<Int> = 10...30
-    
     // MARK: - Public and Internal Methods
     func getValidFirstName(name: String?) -> (valid: Bool, value: String) {
         let firstName: String = name ?? ""
-        let firstNameIsValid: Bool = firstNameRange ~= firstName.count
         
-        let firstNameRegex: String = "[A-Za-z]+"
+        let firstNameRegex: String = "([A-Za-z]+){10,30}"
         let predicate: NSPredicate = NSPredicate(format: "SELF MATCHES %@", firstNameRegex)
         let isValid: Bool = predicate.evaluate(with: firstName)
         
-        return (firstNameIsValid, firstName)
+        return (isValid, firstName)
     }
     
     func getValidEmail(email: String?) -> (valid: Bool, value: String) {

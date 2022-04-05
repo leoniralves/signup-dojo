@@ -46,4 +46,19 @@ final class SignUpValidatorTests: XCTestCase {
         XCTAssertTrue(assertObject.valid)
         XCTAssertEqual(assertObject.value, dummyValue)
     }
+    
+    func test_getValidFirstName_whenNameParameterIsNil_shouldReturnFalse() {
+        let assertObject = sut.getValidFirstName(name: nil)
+        
+        XCTAssertFalse(assertObject.valid)
+        XCTAssertTrue(assertObject.value.isEmpty)
+    }
+    
+    func test_getValidFirstName_whenNameParameterIsLessThan10_shouldReturnFalse() {
+        let dummyValue: String = "a"
+        let assertObject = sut.getValidFirstName(name: dummyValue)
+        
+        XCTAssertFalse(assertObject.valid)
+        XCTAssertEqual(assertObject.value, dummyValue)
+    }
 }

@@ -98,11 +98,11 @@ final class SignUpPresenterTests: XCTestCase {
         
         networkerSpy.verifyRequestArg(
             arg: .signUp(
-                firstName: dummyModel.firstName!,
+                firstName: dummyModel.firstName,
                 lastName: dummyModel.lastName,
                 age: dummyModel.age,
-                email: dummyModel.email!,
-                password: dummyModel.password!
+                email: dummyModel.email,
+                password: dummyModel.password
             )
         )
     }

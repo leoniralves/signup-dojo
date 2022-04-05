@@ -16,11 +16,11 @@ extension SignUpModel {
         password: String? = nil
     ) -> Self {
         .init(
-            firstName: firstName,
+            firstName: firstName!,
             lastName: lastName,
             age: age,
-            email: email,
-            password: password
+            email: email!,
+            password: password!
         )
     }
 }

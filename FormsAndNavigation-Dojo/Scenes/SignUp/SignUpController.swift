@@ -86,13 +86,14 @@ class SignUpController: UIViewController {
         presenter.userDidRequestToSignUp(user: userSignUp)
     }
     
+    // TODO: Seguir alterações do leo, discussoes adapter. Remover force
     private func getUserSignUp() -> SignUpModel {
         return .init(
-            firstName: inputFirstName.text,
+            firstName: inputFirstName.text!,
             lastName: inputLastName.text,
             age: inputAge.text,
-            email: inputEmail.text,
-            password: inputPassword.text
+            email: inputEmail.text!,
+            password: inputPassword.text!
         )
     }
 }
