@@ -39,13 +39,6 @@ final class SignUpPresenter: SignUpPresenterInput {
     }
     
     // MARK: - Public and Internal Methods
-    //    func userDidRequestToSignUp(user: SignUpModel) {
-    //        // Validar dados
-    //        // Se deu errado, dispara delegate
-    //        // Se deu certo, faz request
-    //        // Callback
-    //    }
-    
     func userDidRequestToSignUp(user: SignUpModel) {
         let state = handleUserData(user: user)
 
@@ -93,16 +86,12 @@ final class SignUpPresenter: SignUpPresenterInput {
     }
     
     private func requestSignUp(user: SignUpModel) {
-        guard let firstName = user.firstName, let email = user.email, let password = user.password else {
-            return
-        }
-        
         networker.request(target: .signUp(
-            firstName: firstName,
+            firstName: user.firstName,
             lastName: user.lastName,
             age: user.age,
-            email: email,
-            password: password
+            email: user.email,
+            password: user.password
         )) { result in
             trackNetworkRequest(result: result)
         }
