@@ -7,6 +7,14 @@
 
 import UIKit
 
+struct SignUpDTO {
+    let firstName: String?
+    let lastName: String?
+    let age: String?
+    let email: String?
+    let password: String?
+}
+
 class SignUpController: UIViewController {
     // MARK: - Properties
     private let viewModel: SignUpViewModelProtocol
@@ -81,19 +89,19 @@ class SignUpController: UIViewController {
     }
     
     @objc func actionSignUp(_ sender: UIButton) {
-        let userSignUp: SignUpModel = getUserSignUp()
+        let userSignUp: SignUpDTO = getUserSignUp()
         
         presenter.userDidRequestToSignUp(user: userSignUp)
     }
     
     // TODO: Seguir alterações do leo, discussoes adapter. Remover force
-    private func getUserSignUp() -> SignUpModel {
+    private func getUserSignUp() -> SignUpDTO {
         return .init(
-            firstName: inputFirstName.text!,
+            firstName: inputFirstName.text,
             lastName: inputLastName.text,
             age: inputAge.text,
-            email: inputEmail.text!,
-            password: inputPassword.text!
+            email: inputEmail.text,
+            password: inputPassword.text
         )
     }
 }

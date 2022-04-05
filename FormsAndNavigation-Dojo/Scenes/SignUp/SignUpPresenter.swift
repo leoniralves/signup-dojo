@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 protocol SignUpPresenterInput {
-    func userDidRequestToSignUp(user: SignUpModel)
+    func userDidRequestToSignUp(user: SignUpDTO)
 }
 
 protocol SignUpPresenterOutput: AnyObject {
@@ -39,7 +39,7 @@ final class SignUpPresenter: SignUpPresenterInput {
     }
     
     // MARK: - Public and Internal Methods
-    func userDidRequestToSignUp(user: SignUpModel) {
+    func userDidRequestToSignUp(user: SignUpDTO) {
         let state = handleUserData(user: user)
 
         switch state {
@@ -50,7 +50,7 @@ final class SignUpPresenter: SignUpPresenterInput {
         }
     }
     
-    private func handleUserData(user: SignUpModel) -> Result<SignUpModel, SignUpFormErrors> {
+    private func handleUserData(user: SignUpDTO) -> Result<SignUpModel, SignUpFormErrors> {
         let nameVerified: (valid: Bool, value: String) = validator.getValidFirstName(name: user.firstName)
         let emailVerified: (valid: Bool, value: String) = validator.getValidEmail(email: user.email)
         let passwordVerified: (valid: Bool, value: String) = validator.getValidPassword(password: user.password)
@@ -70,7 +70,12 @@ final class SignUpPresenter: SignUpPresenterInput {
         }
         
         if formErrors.errors.isEmpty {
-            return .success(user)
+            return .success(.init(
+                firstName: nameVerified.value,
+                lastName: user.lastName,
+                age: user.age,
+                email: emailVerified.value,
+                password: passwordVerified.value))
         } else {
             return .failure(formErrors)
         }
